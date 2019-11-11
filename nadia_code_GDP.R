@@ -36,6 +36,9 @@ gdp_scatter_plot = ggplot(gdp_happy_df,aes(x = Economy..GDP.per.Capita., y = Hap
        y = "Happiness Score", 
        Title = "GDP vs Happiness Score Scatterplot")
 
+#r squared value
+gdp.lm = lm(Economy..GDP.per.Capita. ~ Happiness.Score, data=gdp_happy_df)
+gdp_r_squared = summary(gdp.lm)$r.squared 
 
 # CHLOROPLETH MAPS
 # change United States to USA
@@ -91,6 +94,13 @@ make_happy_map <- function(state_shape) {
 
 interactive_happy_map <- ggplotly(make_happy_map(world_shape))
 interactive_happy_map
+
+
+
+
+
+
+
 
 
 
