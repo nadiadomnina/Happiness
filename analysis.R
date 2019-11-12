@@ -260,9 +260,24 @@ health_map <- ggplot(world_shape) +
 
 # Vincent
 
+employment_df <- happy_df %>%
+  mutate(Employment..Agriculture....of.employed. = 
+           ifelse(Employment..Agriculture....of.employed. >= 0, 
+                  Employment..Agriculture....of.employed., NA),
+         
+         Employment..Industry....of.employed. = 
+           ifelse(Employment..Industry....of.employed. >= 0, 
+                  Employment..Industry....of.employed., NA),
+         
+         
+         Employment..Services....of.employed. = 
+           ifelse(Employment..Services....of.employed. >= 0, 
+                  Employment..Services....of.employed., NA),
+         
+  )
 
 # Scatterplot of Unemployment vs. Happiness
-ggplot(happy_df,aes(x = as.numeric(Unemployment....of.labour.force.), y = Happiness.Score, color = Happiness.Rank, na.rm = TRUE))+
+ggplot(employment_df,aes(x = as.numeric(Unemployment....of.labour.force.), y = Happiness.Score, color = Happiness.Rank, na.rm = TRUE))+
   geom_point(shape = 19, size = 5)+
   stat_smooth(method = "lm", col = "black")+
   theme_light()+
@@ -273,7 +288,7 @@ ggplot(happy_df,aes(x = as.numeric(Unemployment....of.labour.force.), y = Happin
        Title = "Unemployment Rate vs Happiness Score Scatterplot")
 
 # Scatterplot of Employment in Agriculture vs. Happiness
-ggplot(happy_df,aes(x = Employment..Agriculture....of.employed., y = Happiness.Score, color = Happiness.Rank, na.rm = TRUE))+
+ggplot(employment_df,aes(x = Employment..Agriculture....of.employed., y = Happiness.Score, color = Happiness.Rank, na.rm = TRUE))+
   geom_point(shape = 19, size = 5)+
   stat_smooth(method = "lm", col = "black")+
   theme_light()+
@@ -283,7 +298,7 @@ ggplot(happy_df,aes(x = Employment..Agriculture....of.employed., y = Happiness.S
        Title = "Agriculture Employment vs Happiness Score Scatterplot")
 
 # Scatterplot of Employment in Industry vs. Happiness
-ggplot(happy_df,aes(x = Employment..Industry....of.employed., y = Happiness.Score, color = Happiness.Rank, na.rm = TRUE))+
+ggplot(employment_df,aes(x = Employment..Industry....of.employed., y = Happiness.Score, color = Happiness.Rank, na.rm = TRUE))+
   geom_point(shape = 19, size = 5)+
   stat_smooth(method = "lm", col = "black")+
   theme_light()+
@@ -293,7 +308,7 @@ ggplot(happy_df,aes(x = Employment..Industry....of.employed., y = Happiness.Scor
        Title = "Industry Employment vs Happiness Score Scatterplot")
 
 # Scatterplot of Employment in Srvices vs. Happiness
-ggplot(happy_df,aes(x = Employment..Services....of.employed., y = Happiness.Score, color = Happiness.Rank, na.rm = TRUE))+
+ggplot(employment_df,aes(x = Employment..Services....of.employed., y = Happiness.Score, color = Happiness.Rank, na.rm = TRUE))+
   geom_point(shape = 19, size = 5)+
   stat_smooth(method = "lm", col = "black")+
   theme_light()+
@@ -301,5 +316,3 @@ ggplot(happy_df,aes(x = Employment..Services....of.employed., y = Happiness.Scor
   labs(x = "Employed in Services", 
        y = "Happiness Score", 
        Title = "Services Employment vs Happiness Score Scatterplot")
-
-
