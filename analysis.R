@@ -48,15 +48,15 @@ trust <- gov_trust_df %>% select(Country, Trust..Government.Corruption.)
 
 # Scatter Plot
 gov_trust_scatter_plot = ggplot(gov_trust_df,
-                                aes(x = Happiness.Score,
-                                    y = Trust..Government.Corruption.,
+                                aes(x = Trust..Government.Corruption.,
+                                    y = Happiness.Score,
                                     color = Freedom )) +
   geom_point(shape = 20, size = 4) +
   stat_smooth(method = "lm", col = "black") +
   theme_light()+
   scale_color_gradient("Degree of Country Freedom", 
                        low = "grey", high = "purple2") +
-  labs(x = "Happiness Score", y = "Government Trust",
+  labs(x = "Government Trust", y = "Happiness Score",
        Title = "Happiness Score vs. Gov. Trust Scatterplot")
 
 
@@ -88,6 +88,15 @@ heat_map <- ggplot(world_shape) +
   scale_fill_continuous(low = "#431338", high = "431338", na.value = "white") +
   labs(fill = "Percent of Corruption",
        title = "Percent of Corruption in each Country, 2017")
+
+
+
+
+
+
+
+
+
 
 
 
@@ -183,6 +192,68 @@ interactive_happy_map <- ggplotly(make_happy_map(world_shape))
 interactive_happy_map
 
 
+
+
+
+
+
+
+
+
+
+
+
+# Hanna's Part 
+
+
+#Health related column
+health_df <- happy_df %>% 
+  select(Country, Happiness.Score, Happiness.Rank, Health..Life.Expectancy.) %>% 
+  arrange(desc(Health..Life.Expectancy.))
+
+
+# Health vs Happiness scatter plot
+
+health_scatter_plot = ggplot(health_df,aes(x = Health..Life.Expectancy., y = Happiness.Score, color = Happiness.Rank ))+
+  geom_point(shape = 20, size = 5)+
+  stat_smooth(method = "lm", col = "black")+
+  theme_light()+
+  scale_color_gradient("Happiness Rank", low = "yellow", high = "Red") +
+  labs(x = "Health & Life Expectancy", 
+       y = "Happiness Score", 
+       Title = "Health & Life Expectancy vs Happiness Score Scatterplot")
+
+
+#r squared value
+
+health.lm = lm(Health..Life.Expectancy. ~ Happiness.Score, data=health_df)
+health_r_squared = summary(health.lm)$r.squared 
+
+
+# Health & Life expectancy map
+health_df$Country[health_df$Country == "United States"] = "USA"
+
+
+world_shape <- map_data(map = "world") %>% 
+  rename(Country = region) %>%
+  full_join(health_df, by = "Country") %>%
+  rename(
+    Longitude = long,
+    Latitude = lat
+  )
+
+
+health_map <- ggplot(world_shape) +
+  geom_polygon(
+    mapping = aes(x = Longitude, y = Latitude, group = group, fill = Health..Life.Expectancy.),
+    color = "black"
+  ) +
+  coord_map() +
+  scale_fill_continuous(low = "#132B43", high = "Red", na.value = "white") +
+  labs(
+    fill = "Health & Life expectancy",
+    title = "Map of Health & Life expectancy"
+  )
 
 
 
