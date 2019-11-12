@@ -5,10 +5,9 @@ library("knitr")
 library(tidyr)
 library(ggplot2)
 library(maps)
-library(rworldmap)
-library(plotly)
 library(leaflet)
 library(ggpmisc)
+library(plotly)
 
 setwd("~/Documents/GitHub/project")
 
@@ -69,6 +68,8 @@ gov_trust_r_squared = summary(gov_trust.lm)$r.squared
 
 
 # Creates map based on aggregated data
+gov_trust_df$Country[gov_trust_df$Country == "United States"] = "USA"
+
 world_shape <- map_data(map = "world") %>% 
   rename(Country = region) %>%
   full_join(gov_trust_df, by = "Country") %>%
@@ -80,7 +81,8 @@ world_shape <- map_data(map = "world") %>%
 heat_map <- ggplot(world_shape) +
   geom_polygon(
     mapping = aes(x = Longitude, y = Latitude, group = group, fill = Trust..Government.Corruption.),
-    color = "black"
+    color = "gray",
+    size = .1
   ) +
   coord_map() +
   scale_fill_continuous(low = "#431338", high = "431338", na.value = "white") +
@@ -94,11 +96,13 @@ heat_map <- ggplot(world_shape) +
 
 # Nadia's Part
 
+# Using RworldMap
+# install.packages("rworldmap", repos="http://R-Forge.R-project.org")
+
 
 
 #load csv
 happy_df <- read.csv("data/happy_df.csv", stringsAsFactors = FALSE)
-View(happy_df)
 
 #look at only GDP related columns
 gdp_only_df = happy_df %>% 
@@ -156,7 +160,6 @@ make_gdp_map <- function(state_shape) {
   
 }
 interactive_gdp_map <- ggplotly(make_gdp_map(world_shape))
-interactive_gdp_map
 
 
 
