@@ -13,6 +13,21 @@ library(ggpmisc)
 #NA
 #load csv file
 happy_df<- read.csv("data/happy_df.csv", stringsAsFactors = FALSE)
+happy_df <- happy_df %>%
+  mutate(Employment..Agriculture....of.employed. = 
+           ifelse(Employment..Agriculture....of.employed. >= 0, 
+                  Employment..Agriculture....of.employed., NA),
+         
+         Employment..Industry....of.employed. = 
+           ifelse(Employment..Industry....of.employed. >= 0, 
+                  Employment..Industry....of.employed., NA),
+         
+         
+         Employment..Services....of.employed. = 
+           ifelse(Employment..Services....of.employed. >= 0, 
+                  Employment..Services....of.employed., NA),
+           
+         )
 View(happy_df)
 
 # Scatterplot of Unemployment vs. Happiness
