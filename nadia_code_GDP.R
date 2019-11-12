@@ -13,7 +13,7 @@ library(ggpmisc)
 
 
 #load csv
-happy_df <- read.csv("happy_df.csv", stringsAsFactors = FALSE)
+happy_df <- read.csv("data/happy_df.csv", stringsAsFactors = FALSE)
 View(happy_df)
 
 #look at only GDP related columns
