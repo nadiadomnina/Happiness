@@ -22,28 +22,16 @@ happy_data <- left_join(country_2017_data, country_data, by = "Country")
 write.csv(happy_data, file = "data/happy_df.csv")
 
 
+happy_df <- read.csv("data/happy_df.csv", stringsAsFactors = FALSE)
 
 
-gov_trust_df <- happy_data %>% 
+
+gov_trust_df <- happy_df %>% 
   select(Country, Happiness.Score, Happiness.Rank, Freedom, Trust..Government.Corruption.) %>%
   arrange(desc(Trust..Government.Corruption.))
 
 
 trust <- gov_trust_df %>% select(Country, Trust..Government.Corruption.)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # Scatter Plot
@@ -110,8 +98,6 @@ heat_map <- ggplot(world_shape) +
 
 
 
-#load csv
-happy_df <- read.csv("data/happy_df.csv", stringsAsFactors = FALSE)
 
 #look at only GDP related columns
 gdp_only_df = happy_df %>% 
