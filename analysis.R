@@ -210,6 +210,15 @@ health_scatter_plot = ggplot(health_df,aes(x = Health..Life.Expectancy., y = Hap
        Title = "Health & Life Expectancy vs Happiness Score Scatterplot")
 
 
+
+
+
+
+
+
+
+
+
 #r squared value
 
 health.lm = lm(Health..Life.Expectancy. ~ Happiness.Score, data=health_df)
