@@ -15,17 +15,33 @@ library(plotly)
 # Define UI for Application
 
 
+
+
 main_page <- tabPanel(
     "Main", # label for the tab in the navbar
-    titlePanel("Main Page"), # show with a displayed title
+    titlePanel("What Makes Us Happy?"), 
     
     # This content uses a sidebar layout
     sidebarLayout(
         sidebarPanel(
-            p("Testing to see if this works?")
+            p("To do:     
+              1)make the drop down menu actually display different results"),
+            p("Can you guess which category impacts happiness the most?"),
+            p("Select different categories from the drop down menu to aid your guess"),
+            
+            selectInput(
+                inputId = "variable",
+                label = "Category",
+                choices = c("Happiness Scores", "GDP", "Health", "Economy", "Government Tust")
+            )
+            
         ),
         mainPanel(
-            plotOutput("world_happy_map") # reactive output provided by leaflet
+            plotOutput("world_happy_map"), # reactive output provided by leaflet
+            plotOutput("health_heat_map"),
+            plotOutput("gdp_heat_map"),
+            #insert economy plot here
+            plotOutput("trust_heat_map")
         )
     )
 )
@@ -55,7 +71,7 @@ page_two <- tabPanel(
     # This content uses a sidebar layout
     sidebarLayout(
         sidebarPanel(
-            p("Testing to see if this works?")
+            p("To Do: fix the color scale label. its not showing happiness scores.")
         ),
         mainPanel(
             plotOutput("health_plot"), # reactive output provided by leaflet
@@ -69,9 +85,13 @@ page_three <- tabPanel(
     "Economy", # label for the tab in the navbar
     titlePanel("Economy"), # show with a displayed title
     
+    
     # This content uses a sidebar layout
     sidebarLayout(
         sidebarPanel(
+            p("To Do:   
+              1) fix the color scale label. its not showing happiness scores.   
+              2) make a map of the category with the highest r squared value"),
             selectInput(
                 inputId = "variable",
                 label = "Title of sidebar",
@@ -95,7 +115,7 @@ page_four <- tabPanel(
     # This content uses a sidebar layout
     sidebarLayout(
         sidebarPanel(
-            p("Testing to see if this works?")
+            p("To Do: fix the color scale label. its not showing happiness scores.")
         ),
         mainPanel(
             plotOutput("trust_plot"), # reactive output provided by leaflet
@@ -104,13 +124,98 @@ page_four <- tabPanel(
     )
 )
 
+
+
+research_question_page <- tabPanel(
+    "Information", # label for the tab in the navbar
+    
+    # This content uses a column layouut
+    fluidRow(
+        column(10,      mainPanel(
+            h2("Background Information:"),
+            wellPanel("insert background info here"),
+            h2("Research Question:"),
+            wellPanel("insert research question here")
+        ))
+    )
+)
+
+
+
+
+conclusion_page <- tabPanel(
+    "Conclusions", # label for the tab in the navbar
+    titlePanel("Conclusions"), # show with a displayed title
+    
+    # This content uses a column layouut
+    fluidRow(
+        column(10,      
+               mainPanel(
+            wellPanel("talk about which factor turned out to be most 
+                      relevant to happiness and inferenes about why 
+                      and how this information can help people")
+        ))
+    )
+)
+
+
+
+about_us_page <- tabPanel(
+    "About Us", # label for the tab in the navbar
+    titlePanel("The Team"), # show with a displayed title
+    
+    # This content uses a column layouut
+    fluidRow(
+        column(10,      
+               mainPanel(
+                   
+                   # Nadia
+                   wellPanel(
+                       h2("Nadia Domnina"),
+                       p("insert info about me")
+                   ),
+                   
+                   # Vinay 
+                   wellPanel(
+                       h2("Vinay Patel"),
+                       p("insert info about me")
+                   ),
+                   
+                   # Hanna 
+                   wellPanel(
+                       h2("Hanna Song"),
+                       p("insert info about me")
+                   ),
+                  
+                   # Vincent 
+                   wellPanel(
+                       h2("Vincent Vo"),
+                       p("insert info about me")
+                   )
+                   
+                
+               ))
+    )
+)
+
+
+
+
+
+
+
+
+
 my_ui <- navbarPage(
     "Happiness Report", # application title
     main_page,
+    research_question_page ,
     page_one,
     page_two,
     page_three,
-    page_four
+    page_four,
+    conclusion_page,
+    about_us_page
 )
 
 
@@ -122,38 +227,40 @@ my_ui <- navbarPage(
 
 
 
-
+# Server
 
 
 my_server <- function(input, output) {
     
     
-    # DF Manipulation
+    # DATA FRAMES
     happy_df <- read.csv("data/happy_df.csv", stringsAsFactors = FALSE)
     
     
-    # Trust DATAFRAME
+    # TRUST dataframe
     gov_trust_df <- happy_df %>% 
         select(Country, Happiness.Score, Happiness.Rank, Freedom, Trust..Government.Corruption.) %>%
         arrange(desc(Trust..Government.Corruption.))
     gov_trust_df$Country[gov_trust_df$Country == "United States"] = "USA"
     
-    #GPD DATAFRAME
+    #GPD dataframe
     #data frame with country namesm happy rank, and gdp info
-    gdp_only_df = happy_df %>% select(contains("GDP"))
+    gdp_only_df = happy_df %>%
+        select(contains("GDP"))
+    
     gdp_happy_df = happy_df %>% 
         select(2:4) %>% 
         bind_cols(gdp_only_df)
     gdp_happy_df$Country[gdp_happy_df$Country == "United States"] = "USA"
     
     
-    #Health DATAFRAME
+    #HEALTH dataframe
     health_df <- happy_df %>% 
         select(Country, Happiness.Score, Happiness.Rank, Health..Life.Expectancy.) %>% 
         arrange(desc(Health..Life.Expectancy.))
     health_df$Country[health_df$Country == "United States"] = "USA"
     
-    #Economy dataframe
+    #ECONOMY dataframe
     employment_df <- happy_df %>%
         mutate(Employment..Agriculture....of.employed. = 
                    ifelse(Employment..Agriculture....of.employed. >= 0, 
@@ -171,7 +278,7 @@ my_server <- function(input, output) {
         )
     
     
-    # WORLD MAP DATAFRAME
+    # WORLD MAP dataframes
     world_shape <- map_data(map = "world") %>% 
         rename(Country = region) %>%
         full_join(gov_trust_df, by = "Country") %>%
@@ -206,7 +313,8 @@ my_server <- function(input, output) {
             theme_light()+
             scale_color_gradient("Degree of Country Freedom", 
                                  low = "grey", high = "purple2") +
-            labs(x = "Government Trust", y = "Happiness Score",
+            labs(x = "Government Trust",
+                 y = "Happiness Score",
                  Title = "Happiness Score vs. Gov. Trust Scatterplot")
     })
     
@@ -258,7 +366,9 @@ my_server <- function(input, output) {
     })
     
     output$health_plot <- renderPlot({
-        ggplot(health_df,aes(x = Health..Life.Expectancy., y = Happiness.Score, color = Happiness.Rank ))+
+        ggplot(health_df,aes(x = Health..Life.Expectancy.,
+                             y = Happiness.Score,
+                             color = Happiness.Rank ))+
             geom_point(shape = 20, size = 5)+
             stat_smooth(method = "lm", col = "black")+
             theme_light()+
@@ -272,7 +382,8 @@ my_server <- function(input, output) {
         ggplot(health_world_shape) +
             geom_polygon(
                 mapping = aes(x = Longitude, y = Latitude, group = group, fill = Health..Life.Expectancy.),
-                color = "black"
+                color = "gray",
+                size = .1
             ) +
             coord_map() +
             scale_fill_continuous(low = "#132B43", high = "Red", na.value = "white") +
