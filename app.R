@@ -25,26 +25,25 @@ main_page <- tabPanel(
     sidebarLayout(
         sidebarPanel(
             p("To do:     
-              1)make the drop down menu actually display different results"),
+              1)make the drop down menu actually display different results  
+              2) figure out whats wrong with the maps,"),
             p("Can you guess which category impacts happiness the most?"),
             p("Select different categories from the drop down menu to aid your guess"),
             
             selectInput(
                 inputId = "variable",
-                label = "Category",
+                label = "Please select a category",
                 choices = c("Happiness Scores", "GDP", "Health", "Economy", "Government Tust")
             )
             
         ),
         mainPanel(
-            plotOutput("world_happy_map"), # reactive output provided by leaflet
-            plotOutput("health_heat_map"),
-            plotOutput("gdp_heat_map"),
-            #insert economy plot here
-            plotOutput("trust_heat_map")
+           
+                plotOutput("map")
         )
-    )
-)
+            
+    
+))
 
 
 page_one <- tabPanel(
@@ -365,6 +364,9 @@ my_server <- function(input, output) {
             )
     })
     
+    
+    
+  
     output$health_plot <- renderPlot({
         ggplot(health_df,aes(x = Health..Life.Expectancy.,
                              y = Happiness.Score,
@@ -378,7 +380,9 @@ my_server <- function(input, output) {
                  Title = "Health & Life Expectancy vs Happiness Score Scatterplot")
     })
     
-    output$health_heat_map <- renderPlot({
+    
+   #  if(input$variable == "Health"){
+    output$health_heat_map <- renderPlot({  
         ggplot(health_world_shape) +
             geom_polygon(
                 mapping = aes(x = Longitude, y = Latitude, group = group, fill = Health..Life.Expectancy.),
@@ -391,7 +395,8 @@ my_server <- function(input, output) {
                 fill = "Health & Life expectancy",
                 title = "Map of Health & Life expectancy"
             )
-    })
+    }) 
+
     
     
     output$world_happy_map <- renderPlot({
