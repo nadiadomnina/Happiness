@@ -295,10 +295,6 @@ my_server <- function(input, output){
                           Employment..Services....of.employed., NA),
         )
 
-    # WORLD MAP DATAFRAME
-    world_shape <- map_data(map = "world") %>%
-
-    
     # WORLD MAP dataframes
     world_shape <- map_data(map = "world") %>% 
         rename(Country = region) %>%
