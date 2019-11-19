@@ -22,9 +22,7 @@ main_page <- tabPanel(
   # show with a displayed title
   # This content uses a sidebar layout
   titlePanel("What Makes Us Happy?"),
-  
 
-  
   fluidRow(
     column(
       12,
@@ -45,7 +43,7 @@ main_page <- tabPanel(
               "Government Tust"
             ),
           ),
-          
+        
           wellPanel(
             p("choice of rendered map goes here"),
             plotOutput("world_happy_map"),
@@ -53,7 +51,7 @@ main_page <- tabPanel(
             plotOutput("health_heat_map"),
             plotOutput("trust_heat_map"),
             p("need to create a heat map for employment")
-          ),
+          )
         )
       )
     )
