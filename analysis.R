@@ -90,7 +90,7 @@ world_shape <- map_data(map = "world") %>%
     Latitude = lat
   )
 
-heat_map <- ggplot(world_shape) +
+trust_heat_map <- ggplot(world_shape) +
   geom_polygon(
     mapping = aes(x = Longitude, y = Latitude, group = group, fill = Trust..Government.Corruption.),
     color = "gray",
@@ -255,7 +255,7 @@ ggplot(employment_df, aes(x = as.numeric(Unemployment....of.labour.force.), y = 
     Title = "Unemployment Rate vs Happiness Score Scatterplot"
   )
 
-# r squared value
+# r squared value DOESNT WORK
 # employment1.lm = lm(as.numeric(Unemployment....of.labour.force.) ~ Happiness.Score, data=employment_df)
 # employment1_r_squared = summary(employment1.lm)$r.squared
 
