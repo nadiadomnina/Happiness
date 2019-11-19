@@ -341,7 +341,7 @@ my_server <- function(input, output) {
             labs(fill = "Percent of Corruption",
                  title = "Percent of Corruption in each Country, 2017")
     })
-    output$gpd_plot <- renderPlot({
+    output$gdp_plot <- renderPlot({
         ggplot(gdp_happy_df,
                aes(x = Economy..GDP.per.Capita.,
                    y = Happiness.Score,
@@ -355,7 +355,7 @@ my_server <- function(input, output) {
                  y = "Happiness Score",
                  Title = "GDP vs Happiness Score Scatterplot")
     })
-    output$gpd_heat_mat <- renderPlot({
+    output$gdp_heat_map <- renderPlot({
         ggplot(gdp_world_shape) +
             geom_polygon(
                 mapping = aes(x = Longitude, y = Latitude, group = group,
