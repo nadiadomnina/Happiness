@@ -14,7 +14,7 @@ library(plotly)
 # Server
 
 
-my_server <- function(input, output) {
+group_server <- function(input, output) {
   # DF Manipulation
   happy_df <- read.csv("data/happy_df.csv", stringsAsFactors = FALSE)
   # Trust DATAFRAME
