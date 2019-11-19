@@ -23,8 +23,7 @@ main_page <- tabPanel(
   # This content uses a sidebar layout
   titlePanel("What Makes Us Happy?"),
   
-  
-  
+
   
   fluidRow(
     column(
