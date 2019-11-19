@@ -28,6 +28,8 @@ main_page <- tabPanel(
   p("2.Make the pull down tabs work on the Main page and on the Employment page"),
   p("3.Add unit labels into all graphs. "),
   p("4.fill in the missing pieces within all pages"),
+  p("5.make a heat map for employment"),
+  p("6.figure out what wrong with the maps(the white line at the top)"),
 
 
   fluidRow(
