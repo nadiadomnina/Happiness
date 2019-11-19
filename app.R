@@ -23,7 +23,11 @@ main_page <- tabPanel(
   # This content uses a sidebar layout
   titlePanel("What Makes Us Happy?"),
 
-
+  p("WHAT NEEDS TO GET DONE EVERYWHERE:"),
+  p("1.Split up code documents so that we can source() different documents as opposed to having EVERYTHING in the app.R"),
+  p("2.Make the pull down tabs work on the Main page and on the Employment page"),
+  p("3.Add unit labels into all graphs. "),
+  p("4.fill in the missing pieces within all pages"),
 
 
   fluidRow(
