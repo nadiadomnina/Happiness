@@ -269,9 +269,7 @@ about_us_page <- tabPanel(
 
 
 
-
-
-my_ui <- navbarPage(
+group_ui <- navbarPage(
   "Happiness Report", # application title
   main_page,
   research_question_page,
