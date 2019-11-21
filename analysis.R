@@ -9,7 +9,7 @@ library(leaflet)
 library(ggpmisc)
 library(plotly)
 
-# setwd("~/Documents/GitHub/project")
+setwd("~/Documents/GitHub/project")
 
 
 # Set up
@@ -18,7 +18,6 @@ country_2017_data <- read.csv("happy_project/data/2017.csv", stringsAsFactors = 
 country_data <- read.csv("happy_project/data/country_variabels.csv", stringsAsFactors = FALSE)
 colnames(country_data)[colnames(country_data) == "country"] <- "Country"
 happy_data <- left_join(country_2017_data, country_data, by = "Country")
-write.csv(happy_data, file = "data/happy_df.csv")
 
 happy_df <- read.csv("happy_project/data/happy_df.csv", stringsAsFactors = FALSE)
 
@@ -241,6 +240,8 @@ employment_df <- happy_df %>%
         Employment..Services....of.employed., NA
       )  
   )
+
+employment_df <- na.omit(employment_df)
 
 # Scatterplot of Unemployment vs. Happiness
 ggplot(employment_df, aes(x = as.numeric(Unemployment....of.labour.force.), y = Happiness.Score, color = Happiness.Rank, na.rm = TRUE)) +

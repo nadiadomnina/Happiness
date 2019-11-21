@@ -78,6 +78,10 @@ shinyServer(function(input, output) {
                           Employment..Services....of.employed., NA),
         )
     
+    
+    employment_df <- na.omit(employment_df)
+    
+    
     # WORLD MAP dataframes
     world_shape <- map_data(map = "world") %>%
         rename(Country = region) %>%
