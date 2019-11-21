@@ -30,7 +30,7 @@ main_page <- tabPanel(
             12,
             mainPanel(
                 wellPanel(
-                    p("insert brief intro paragraph here")
+                    p("Investigating possible causes of happiness and lack of happiness around the world.")
                 ),
                 
                 wellPanel(
@@ -78,7 +78,8 @@ page_one <- tabPanel(
                     plotOutput("gdp_plot") # reactive output provided by leaflet
                 ),
                 wellPanel(
-                    p("insert findings and r sqaured value here")
+                    p("In GDP per Capita scatterplot, we found R-squared vale of 0.66 with the independent variable of GDP per Capita is associated with dependent variable of Happiness Score.
+                    This represents GDP per Capita has 66 percent of an acceptable correlation with Happiness score that shows GDP per Capita can determine Happiness of people. ")
                 )
             )
         )
@@ -99,7 +100,8 @@ page_two <- tabPanel(
                     plotOutput("health_plot") # reactive output provided by leaflet
                 ),
                 wellPanel(
-                    p("insert findings and r sqaured value here")
+                    p("In Health and Life expectancy scatterplot, we found R-squared value of 0.61 with the independent variable of Health and Life expectancy is associated with dependent variable of Happiness score.
+                    This represents Health and Life expectancy has 61 percent of an acceptable correlation with Happiness score which Health and Life expectancy affects Happiness of people. ")
                 )
             )
         )
@@ -136,7 +138,11 @@ page_three <- tabPanel(
                         plotOutput("economy_plot4")
                     ),
                     wellPanel(
-                        p("insert findings and r sqaured value here")
+                        p("For economy, we found four different scatterplot of unemployed labor force, employed in agriculture, employed in industry, and employed in services. These independent variables of different work fields have different R-squared value. 
+                        For unemployed labor force, (error)
+                        For employed in agriculture, we found R-squared value of 0.56 with the independent variable of employed in agriculture associated with Happiness score. This represents employed in agriculture work field has 56 percent of an acceptable correlation with Happiness score. However, our R value of employed in agriculture seems negative that have negative association where people work in agriculture work fields have less happiness score. 
+                        For employed in industry, we found R-squared value of 0.19 with the independent variable of employed in industry which have low association with Happiness score. This represents employed in industry has no correlation with happiness of people. 
+                        For the last scatterplot, we found R-squared value of 0.58 with the independent variable of employed in service associated with happiness score. This represents employed in service has 58 percent of an acceptable correlation with Happiness score. ")
                     )
                 )
             )
@@ -164,7 +170,8 @@ page_four <- tabPanel(
                     plotOutput("trust_plot") # reactive output provided by leaflet
                 ),
                 wellPanel(
-                    p("insert findings and r sqaured value here")
+                    p("In Government trust scatterplot, we found R-squared value of 0.18 with the independent variable of Government trust which have low association with Happiness score. 
+                      This represents government trust does not have any correlation with Happiness score.")
                 )
             )
         )
@@ -181,7 +188,9 @@ research_question_page <- tabPanel(
             h2("Background Information:"),
             wellPanel("insert background info here"),
             h2("Research Question:"),
-            wellPanel("insert research question here")
+            wellPanel("What effect do different country characteristics have on people's happiness?
+                      Is country happiness calculated based on the same characteristics as other countries,
+                      or does each country have a different set of characteristics leading to its happiness")
         ))
     )
 )
@@ -198,9 +207,8 @@ conclusion_page <- tabPanel(
         column(
             10,
             mainPanel(
-                wellPanel("talk about which factor turned out to be most
-                      relevant to happiness and inferenes about why
-                      and how this information can help people")
+                wellPanel("In conclusion, GDP per Capita, and Health and Life expectancy have the most relevant to happiness of people which both have about 60 percent of R-square value.
+                 Other than that, employment of individuals also impact on happiness that people in service have the highest correlation of 58 percent between employment of industry, agriculture, service, and unemployment. ")
             )
         )
     )
