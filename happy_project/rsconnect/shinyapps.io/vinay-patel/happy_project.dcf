@@ -1,0 +1,12 @@
+name: happy_project
+title: happy_project
+username:
+account: vinay-patel
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1502139
+bundleId: 2605662
+url: https://vinay-patel.shinyapps.io/Happy_Project/
+when: 1574298429.65218
+asMultiple: FALSE
+asStatic: FALSE

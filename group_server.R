@@ -9,11 +9,10 @@ library(maps)
 library(leaflet)
 library(ggpmisc)
 library(plotly)
-
+library(rworldmap)
+library(fields)
 
 # Server
-
-
 group_server <- function(input, output) {
   # DF Manipulation
   happy_df <- read.csv("data/happy_df.csv", stringsAsFactors = FALSE)
