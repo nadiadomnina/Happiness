@@ -11,6 +11,7 @@ library(ggpmisc)
 library(plotly)
 library(rworldmap)
 library(fields)
+library(mapproj)
 
 
 shinyServer(function(input, output) {
@@ -39,8 +40,6 @@ shinyServer(function(input, output) {
     #Economy dataframe
     
     
-    # DATA FRAMES
-    happy_df <- read.csv("data/happy_df.csv", stringsAsFactors = FALSE)
     
     # TRUST dataframe
     gov_trust_df <- happy_df %>%

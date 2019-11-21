@@ -1,15 +1,4 @@
 
-library(shiny)
-library(dplyr)
-library(stringr)
-library(knitr)
-library(tidyr)
-library(ggplot2)
-library(maps)
-library(leaflet)
-library(ggpmisc)
-library(plotly)
-
 
 # ______________________
 # Define UI for Application

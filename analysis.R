@@ -14,13 +14,13 @@ library(plotly)
 
 # Set up
 
-country_2017_data <- read.csv("data/2017.csv", stringsAsFactors = FALSE)
-country_data <- read.csv("data/country_variabels.csv", stringsAsFactors = FALSE)
+country_2017_data <- read.csv("happy_project/data/2017.csv", stringsAsFactors = FALSE)
+country_data <- read.csv("happy_project/data/country_variabels.csv", stringsAsFactors = FALSE)
 colnames(country_data)[colnames(country_data) == "country"] <- "Country"
 happy_data <- left_join(country_2017_data, country_data, by = "Country")
 write.csv(happy_data, file = "data/happy_df.csv")
 
-happy_df <- read.csv("data/happy_df.csv", stringsAsFactors = FALSE)
+happy_df <- read.csv("happy_project/data/happy_df.csv", stringsAsFactors = FALSE)
 
 
 # Heat map of world happiness ranking
@@ -239,7 +239,7 @@ employment_df <- happy_df %>%
     Employment..Services....of.employed. =
       ifelse(Employment..Services....of.employed. >= 0,
         Employment..Services....of.employed., NA
-      ),
+      )  
   )
 
 # Scatterplot of Unemployment vs. Happiness
