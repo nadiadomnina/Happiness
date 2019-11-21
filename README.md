@@ -12,3 +12,5 @@ Our project will investigate happiness levels of countries around the world. The
 [_Link to the Project Proposal_](https://github.com/nadiadomnina/project/wiki/Project-Proposal)
 
 [_Link to Happiness Project Application_](https://vinay-patel.shinyapps.io/Happy_Project/)
+
+[_Link to the Technical Report_](https://github.com/nadiadomnina/project/wiki/Technical-Report)
