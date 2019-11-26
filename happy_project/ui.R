@@ -27,27 +27,24 @@ main_page <- tabPanel(
                         inputId = "category",
                         label = "Pick a Category to View",
                         choices = c(
-                            "Happiness Scores",
-                            "GDP",
-                            "Health",
-                            "Economy",
-                            "Government Tust"
+                            "Happiness Scores" = 1,
+                            "GDP" = 2,
+                            "Health" = 3,
+                            "Economy" = 4,
+                            "Government Trust" = 5),
+                            selected = 1
                         ),
                     ),
                     
                     wellPanel(
-                        p("choice of rendered map goes here"),
-                        plotOutput("world_happy_map"),
-                        plotOutput("gdp_heat_map"),
-                        plotOutput("health_heat_map"),
-                        plotOutput("trust_heat_map"),
-                        p("need to create a heat map for employment")
+
+                        plotOutput("heat_map")
                     )
                 )
             )
         )
     )
-)
+
 
 
 
