@@ -119,20 +119,7 @@ shinyServer(function(input, output) {
                  y = "Happiness Score",
                  Title = "Happiness Score vs. Gov. Trust Scatterplot")
     })
-    output$trust_heat_map <- renderPlot({
-        ggplot(world_shape) +
-            geom_polygon(
-                mapping = aes(x = Longitude, y = Latitude, group = group,
-                              fill = Trust..Government.Corruption.),
-                color = "gray",
-                size = .1
-            ) +
-            coord_map() +
-            scale_fill_continuous(low = "#431338", high = "431338",
-                                  na.value = "white") +
-            labs(fill = "Percent of Corruption",
-                 title = "Percent of Corruption in each Country, 2017")
-    })
+
     output$gdp_plot <- renderPlot({
         ggplot(gdp_happy_df,
                aes(x = Economy..GDP.per.Capita.,
@@ -147,22 +134,7 @@ shinyServer(function(input, output) {
                  y = "Happiness Score",
                  Title = "GDP vs Happiness Score Scatterplot")
     })
-    output$gdp_heat_map <- renderPlot({
-        ggplot(gdp_world_shape) +
-            geom_polygon(
-                mapping = aes(x = Longitude, y = Latitude, group = group,
-                              fill = Economy..GDP.per.Capita.),
-                color = "gray", # show country outlines
-                size = .1 # thinly stroked
-            ) +
-            coord_map() + # use a map-based coordinate system
-            scale_fill_gradient(low = "black", high = "lightskyblue",
-                                na.value = "white") +
-            labs(
-                fill = "GDP Per Capita",
-                title = "World Map: GDP per Capita "
-            )
-    })
+
     output$health_plot <- renderPlot({
         ggplot(health_df, aes(x = Health..Life.Expectancy.,
                               y = Happiness.Score, color = Happiness.Rank)) +
@@ -175,13 +147,7 @@ shinyServer(function(input, output) {
                  y = "Happiness Score",
                  Title = "Health & Life Expectancy vs Happiness Score Scatterplot")
     })
-    output$health_heat_map <- renderPlot({
-        ggplot(health_world_shape) +
-            geom_polygon(
-                mapping = aes(x = Longitude, y = Latitude, group = group,
-                              fill = Health..Life.Expectancy.),
-                color = "black")
-    })
+
     
     output$health_plot <- renderPlot({
         ggplot(health_df, aes(x = Health..Life.Expectancy.,
@@ -197,23 +163,7 @@ shinyServer(function(input, output) {
                  Title = "Health & Life Expectancy vs Happiness Score Scatterplot")
     })
     
-    #  if(input$variable == "Health") {
-    output$health_heat_map <- renderPlot({
-        ggplot(health_world_shape) +
-            geom_polygon(
-                mapping = aes(x = Longitude, y = Latitude, group = group,
-                              fill = Health..Life.Expectancy.),
-                color = "gray",
-                size = .1
-            ) +
-            coord_map() +
-            scale_fill_continuous(low = "#132B43", high = "Red",
-                                  na.value = "white") +
-            labs(
-                fill = "Health & Life expectancy",
-                title = "Map of Health & Life expectancy"
-            )
-    })
+
     
     output$world_happy_map <- renderPlot({
         ggplot(world_shape) +
@@ -285,6 +235,84 @@ shinyServer(function(input, output) {
             labs(x = "Employed in Services",
                  y = "Happiness Score",
                  Title = "Services Employment vs Happiness Score Scatterplot")
+    })
+    
+    
+    #PAGE ONE INTERACTIVITY
+    output$heat_map = renderPlot({
+        
+        if(input$category == 1 ){
+            
+            map =  ggplot(world_shape) +
+                    geom_polygon(
+                        mapping = aes(x = Longitude, y = Latitude, group = group,
+                                      fill = Happiness.Score),
+                        color = "gray", # show country outlines
+                        size = .1 # thinly stroked
+                    ) +
+                    coord_map() + # use a map-based coordinate system
+                    scale_fill_gradient(low = "black", high = "greenyellow",
+                                        na.value = "white") +
+                    labs(
+                        fill = "Happiness Score",
+                        title = "World Map: of Happiness Scores"
+                    )
+        }
+        
+        if(input$category == 2){
+           map =  ggplot(gdp_world_shape) +
+                geom_polygon(
+                    mapping = aes(x = Longitude, y = Latitude, group = group,
+                                  fill = Economy..GDP.per.Capita.),
+                    color = "gray", # show country outlines
+                    size = .1 # thinly stroked
+                ) +
+                coord_map() + # use a map-based coordinate system
+                scale_fill_gradient(low = "black", high = "lightskyblue",
+                                    na.value = "white") +
+                labs(
+                    fill = "GDP Per Capita",
+                    title = "World Map: GDP per Capita "
+                )
+        }
+        
+        if(input$category == 3){
+           map =  ggplot(health_world_shape) +
+                geom_polygon(
+                    mapping = aes(x = Longitude, y = Latitude, group = group,
+                                  fill = Health..Life.Expectancy.),
+                    color = "gray",
+                    size = .1
+                    )+
+               coord_map() + # use a map-based coordinate system
+               scale_fill_gradient(low = "black", high = "orange",
+                                   na.value = "white") +
+               labs(
+                   fill = "Life Expectancy",
+                   title = "World Map: Life Expectancy "
+               )
+        }
+
+        if(input$category == 4){
+            #NEED TO MAKE A MAP
+        }
+        
+        if(input$category == 5){
+            map =  ggplot(world_shape) +
+                geom_polygon(
+                    mapping = aes(x = Longitude, y = Latitude, group = group,
+                                  fill = Trust..Government.Corruption.),
+                    color = "gray",
+                    size = .1
+                ) +
+                coord_map() +
+                scale_fill_continuous(low = "#431338", high = "431338",
+                                      na.value = "white") +
+                labs(fill = "Percent of Corruption",
+                     title = "Percent of Corruption in each Country, 2017")
+        }
+ 
+        map
     })
 })
 
