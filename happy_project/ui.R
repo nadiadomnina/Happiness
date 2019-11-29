@@ -105,23 +105,23 @@ page_three <- tabPanel(
             mainPanel(
                 wellPanel(
                     selectInput(
-                        inputId = "variable",
+                        inputId = "economy_choice",
                         label = "Pick a Category to View",
                         choices = c(
-                            "% Unemployed Labor Force vs. Happiness Score",
-                            "% Employed in Agriculture vs. Happiness Score",
-                            "% Employed in Industry vs. Happiness Score",
-                            "% Employed in Services vs. Happiness Score"
+                            "% Unemployed Labor Force vs. Happiness Score" = 1,
+                            "% Employed in Agriculture vs. Happiness Score" = 2,
+                            "% Employed in Industry vs. Happiness Score" = 3,
+                            "% Employed in Services vs. Happiness Score" = 4
                         )
                     ),
                     
                     
                     
                     wellPanel(
-                        plotOutput("economy_plot1"),
-                        plotOutput("economy_plot2"),
-                        plotOutput("economy_plot3"),
-                        plotOutput("economy_plot4")
+                       plotOutput("economy_plot"),
+                       # plotOutput("economy_plot2"),
+                       # plotOutput("economy_plot3"),
+                       # plotOutput("economy_plot4")
                     ),
                     wellPanel(
                         p("For economy, we found four different scatterplot of unemployed labor force, employed in agriculture, employed in industry, and employed in services. These independent variables of different work fields have different R-squared value. 
