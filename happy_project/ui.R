@@ -13,6 +13,23 @@ main_page <- tabPanel(
     # This content uses a sidebar layout
     
     titlePanel("What Makes Us Happy?"),
+    p("our to-do list:", br(),
+      strong("1. make the economy heat map"), br(),
+      "2. write about what the happiness scores are, where they come from, how theyre calculated in the Background Information panel", br(),
+      strong("3. everyone needs to fill out the last about page!!!!!!!"), br(),
+      strong("4. in the conomy tab, we need to display the findings one by one with each selection, not all in one paragraph."), br(),
+      "5. Make each page nicer to look at....probably will need to change the layout.
+      It needs to be consistent on each of the category tabs, but not on the others. Right now 
+      almost all of the pages look empty and boring", br(),
+      "6. Figure out how to make the maps on the first page bigger.", br(),
+      "Andrey said we should consider adding more interactivity on the maps. For example by displaying only
+      a certain continent at a time or something. I think it would be nice to display the top 10 countries,
+      then those ranked 11-20, 21-30, and so on, you get my point.", br(),
+      "7. maybe add photos of us to the last page if we have the time",br(),
+      "8. make the analysis more reader - friendly.", br(),
+      strong("9. Make consistent size dots for the scatterplots, and decide on colors")
+      ),
+    
     
     fluidRow(
         column(
