@@ -8,6 +8,13 @@
 
 
 main_page <- tabPanel(
+    
+    setBackgroundColor(
+        color = c("lightgrey", "white"),
+        gradient = c("linear", "radial"),
+        direction = c("bottom", "top", "right", "left"),
+        shinydashboard = FALSE
+    ),
     "Main", # label for the tab in the navbar
     # show with a displayed title
     # This content uses a sidebar layout
@@ -27,7 +34,8 @@ main_page <- tabPanel(
       then those ranked 11-20, 21-30, and so on, you get my point.", br(),
       "7. maybe add photos of us to the last page if we have the time",br(),
       "8. make the analysis more reader - friendly.", br(),
-      strong("9. Make consistent size dots for the scatterplots, and decide on colors")
+      strong("9. Make consistent size dots for the scatterplots, and decide on colors"), br(),
+      "9. Get rid of lines on the map! Andrey said its a common ggplot problem but we should get rid of them"
       ),
     
     
@@ -36,11 +44,14 @@ main_page <- tabPanel(
             12,
             mainPanel(
                 wellPanel(
+                    style = "background: lightgreen",
                     p("Investigating possible causes of happiness and lack of happiness around the world.")
                 ),
                 
                 wellPanel(
+                    style = "background: white",
                     selectInput(
+                        
                         inputId = "category",
                         label = "Pick a Category to View",
                         choices = c(
@@ -54,7 +65,7 @@ main_page <- tabPanel(
                     ),
                     
                     wellPanel(
-
+                        style = "background: white",
                         plotOutput("heat_map")
                     )
                 )
@@ -78,9 +89,11 @@ page_one <- tabPanel(
             12,
             mainPanel(
                 wellPanel(
+                    style = "background: white",
                     plotOutput("gdp_plot") # reactive output provided by leaflet
                 ),
                 wellPanel(
+                    style = "background: white",
                     p("In GDP per Capita scatterplot, we found R-squared vale of 0.66 with the independent variable of GDP per Capita is associated with dependent variable of Happiness Score.
                     This represents GDP per Capita has 66 percent of an acceptable correlation with Happiness score that shows GDP per Capita can determine Happiness of people. ")
                 )
@@ -100,9 +113,11 @@ page_two <- tabPanel(
             12,
             mainPanel(
                 wellPanel(
+                    style = "background: white",
                     plotOutput("health_plot") # reactive output provided by leaflet
                 ),
                 wellPanel(
+                    style = "background: white",
                     p("In Health and Life expectancy scatterplot, we found R-squared value of 0.61 with the independent variable of Health and Life expectancy is associated with dependent variable of Happiness score.
                     This represents Health and Life expectancy has 61 percent of an acceptable correlation with Happiness score which Health and Life expectancy affects Happiness of people. ")
                 )
@@ -121,6 +136,7 @@ page_three <- tabPanel(
             12,
             mainPanel(
                 wellPanel(
+                    style = "background: white",
                     selectInput(
                         inputId = "economy_choice",
                         label = "Pick a Category to View",
@@ -129,23 +145,31 @@ page_three <- tabPanel(
                             "% Employed in Agriculture vs. Happiness Score" = 2,
                             "% Employed in Industry vs. Happiness Score" = 3,
                             "% Employed in Services vs. Happiness Score" = 4
-                        )
+                        ),
+                        selected = 2
                     ),
                     
                     
                     
                     wellPanel(
-                       plotOutput("economy_plot"),
-                       # plotOutput("economy_plot2"),
-                       # plotOutput("economy_plot3"),
-                       # plotOutput("economy_plot4")
+                        style = "background: white",
+                        plotOutput("economy_plot"),
+    
                     ),
                     wellPanel(
-                        p("For economy, we found four different scatterplot of unemployed labor force, employed in agriculture, employed in industry, and employed in services. These independent variables of different work fields have different R-squared value. 
+                        style = "background: white",
+                        p("For economy, we found four different scatterplot of unemployed labor force,
+                        employed in agriculture, employed in industry, and employed in services. These independent variables
+                        of different work fields have different R-squared value. 
                         For unemployed labor force, (error)
-                        For employed in agriculture, we found R-squared value of 0.56 with the independent variable of employed in agriculture associated with Happiness score. This represents employed in agriculture work field has 56 percent of an acceptable correlation with Happiness score. However, our R value of employed in agriculture seems negative that have negative association where people work in agriculture work fields have less happiness score. 
-                        For employed in industry, we found R-squared value of 0.19 with the independent variable of employed in industry which have low association with Happiness score. This represents employed in industry has no correlation with happiness of people. 
-                        For the last scatterplot, we found R-squared value of 0.58 with the independent variable of employed in service associated with happiness score. This represents employed in service has 58 percent of an acceptable correlation with Happiness score. ")
+                        For employed in agriculture, we found R-squared value of 0.56 with the independent variable of employed
+                        in agriculture associated with Happiness score. This represents employed in agriculture work field has
+                        56 percent of an acceptable correlation with Happiness score. However, our R value of employed in agriculture
+                        seems negative that have negative association where people work in agriculture work fields have less happiness score. 
+                        For employed in industry, we found R-squared value of 0.19 with the independent variable of employed in industry
+                        which have low association with Happiness score. This represents employed in industry has no correlation with happiness of people. 
+                        For the last scatterplot, we found R-squared value of 0.58 with the independent variable of employed
+                        in service associated with happiness score. This represents employed in service has 58 percent of an acceptable correlation with Happiness score. ")
                     )
                 )
             )
@@ -162,17 +186,16 @@ page_four <- tabPanel(
     "Government Trust", # label for the tab in the navbar
     titlePanel("Government Trust"), # show with a displayed title
     
-    
-    
-    
     fluidRow(
         column(
             12,
             mainPanel(
                 wellPanel(
+                    style = "background: white",
                     plotOutput("trust_plot") # reactive output provided by leaflet
                 ),
                 wellPanel(
+                    style = "background: white",
                     p("In Government trust scatterplot, we found R-squared value of 0.18 with the independent variable of Government trust which have low association with Happiness score. 
                       This represents government trust does not have any correlation with Happiness score.")
                 )
