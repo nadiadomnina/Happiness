@@ -74,7 +74,20 @@ shinyServer(function(input, output) {
         }
 
         if(input$category == 4){
-            #NEED TO MAKE A MAP
+            map =  ggplot(world_shape) +
+                geom_polygon(
+                    mapping = aes(x = Longitude, y = Latitude, group = group,
+                                  fill = Unemployment....of.labour.force.),
+                    color = "gray",
+                    size = .1
+                )+
+                coord_map() + # use a map-based coordinate system
+                scale_fill_gradient(low = "black", high = "greenyellow",
+                                    na.value = "white") +
+                labs(
+                    fill = "Unemployment Rate",
+                    title = "World Map: Unemployment Rate"
+                )
         }
         
         if(input$category == 5){
