@@ -289,9 +289,9 @@ about_us_page <- tabPanel(
                 wellPanel(
                     h2("Vincent Vo"),
                     strong("Graduation Year:"),
-                    p("insert here"),
+                    p("2022"),
                     strong("Major/ Intended Major:"),
-                    p("insert here"),
+                    p("Informatics"),
                     strong("Personal Statement:"),
                     p("insert here")
                 )
