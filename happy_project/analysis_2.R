@@ -71,7 +71,7 @@ employment_df <- na.omit(employment_df)
  # 3.
  employment3.lm <- lm(as.numeric(Employment..Industry....of.employed.) ~ Happiness.Score, data = employment_df)
  employment3_r_squared <- summary(employment3.lm)$r.squared
- # 4.
+ # 4. Highest
  employment4.lm <- lm(as.numeric(Employment..Services....of.employed.) ~ Happiness.Score, data = employment_df)
  employment4_r_squared <- summary(employment4.lm)$r.squared
  
