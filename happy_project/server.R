@@ -36,7 +36,8 @@ shinyServer(function(input, output) {
                     labs(
                         fill = "Happiness Score",
                         title = "World Map: of Happiness Scores"
-                    )
+                    )+
+              coord_map(xlim=c(-180,180))
         }
         
         if(input$category == 2){
@@ -53,7 +54,8 @@ shinyServer(function(input, output) {
                 labs(
                     fill = "GDP Per Capita",
                     title = "World Map: GDP per Capita "
-                )
+                )+
+               coord_map(xlim=c(-180,180))
         }
         
         if(input$category == 3){
@@ -70,24 +72,27 @@ shinyServer(function(input, output) {
                labs(
                    fill = "Life Expectancy",
                    title = "World Map: Life Expectancy "
-               )
+               )+
+               coord_map(xlim=c(-180,180))
         }
 
         if(input$category == 4){
             map =  ggplot(world_shape) +
                 geom_polygon(
                     mapping = aes(x = Longitude, y = Latitude, group = group,
-                                  fill = Unemployment....of.labour.force.),
+                                  fill = as.numeric(Unemployment....of.labour.force.)),
                     color = "gray",
                     size = .1
                 )+
                 coord_map() + # use a map-based coordinate system
-                scale_fill_gradient(low = "black", high = "greenyellow",
+                scale_fill_gradient(low = "pink", high = "black",
                                     na.value = "white") +
                 labs(
                     fill = "Unemployment Rate",
                     title = "World Map: Unemployment Rate"
-                )
+                )+
+                coord_map(xlim=c(-180,180))
+            
         }
         
         if(input$category == 5){
@@ -99,10 +104,11 @@ shinyServer(function(input, output) {
                     size = .1
                 ) +
                 coord_map() +
-                scale_fill_continuous(low = "#431338", high = "431338",
+                scale_fill_continuous(low = "white", high = "#B22222",
                                       na.value = "white") +
                 labs(fill = "Percent of Corruption",
-                     title = "Percent of Corruption in each Country, 2017")
+                     title = "Percent of Corruption in each Country, 2017")+
+                coord_map(xlim=c(-180,180))
         }
  
         map
@@ -114,12 +120,12 @@ shinyServer(function(input, output) {
         ggplot(gov_trust_df,
                aes(x = Trust..Government.Corruption.,
                    y = Happiness.Score,
-                   color = Freedom)) +
-            geom_point(shape = 20, size = 4) +
+                   color = Happiness.Rank)) +
+            geom_point(shape = 19, size = 5) +
             stat_smooth(method = "lm", col = "black") +
             theme_light() +
-            scale_color_gradient("Degree of Country Freedom",
-                                 low = "grey", high = "purple2") +
+            scale_color_gradient("Happiness Rank",
+                                 low = "black", high = "#B22222") +
             labs(x = "Government Trust",
                  y = "Happiness Score",
                  Title = "Happiness Score vs. Gov. Trust Scatterplot")
@@ -133,7 +139,7 @@ shinyServer(function(input, output) {
             geom_point(shape = 19, size = 5) +
             stat_smooth(method = "lm", col = "black") +
             theme_light() +
-            scale_color_gradient("Happiness Rank", low = "limegreen",
+            scale_color_gradient("Happiness Rank", low = "lightskyblue",
                                  high = "black", na.value = "white") +
             labs(x = "GDP per Capita",
                  y = "Happiness Score",
@@ -144,11 +150,11 @@ shinyServer(function(input, output) {
         ggplot(health_df, aes(x = Health..Life.Expectancy.,
                               y = Happiness.Score,
                               color = Happiness.Rank)) +
-            geom_point(shape = 20, size = 5) +
+            geom_point(shape = 19, size = 5) +
             stat_smooth(method = "lm", col = "black") +
             theme_light() +
-            scale_color_gradient("Happiness Rank", low = "yellow",
-                                 high = "Red") +
+            scale_color_gradient("Happiness Rank", low = "orange",
+                                 high = "black") +
             labs(x = "Health & Life Expectancy",
                  y = "Happiness Score",
                  Title = "Health & Life Expectancy vs Happiness Score Scatterplot")
@@ -187,7 +193,7 @@ shinyServer(function(input, output) {
                 geom_point(shape = 19, size = 5) +
                 stat_smooth(method = "lm", col = "black") +
                 theme_light() +
-                scale_color_gradient("Happiness Rank", low = "limegreen",
+                scale_color_gradient("Happiness Rank", low = "pink",
                                      high = "black", na.value = "white") +
                 # scale_x_discrete("Unemployed Labor Force", seq(-100, 100, 50),
                 # seq(-100, 100, 50), c(-100, 100)) +
@@ -204,7 +210,7 @@ shinyServer(function(input, output) {
                 geom_point(shape = 19, size = 5) +
                 stat_smooth(method = "lm", col = "black") +
                 theme_light() +
-                scale_color_gradient("Happiness Rank", low = "limegreen",
+                scale_color_gradient("Happiness Rank", low = "pink",
                                      high = "black", na.value = "white") +
                 labs(x = "Employed in Agriculture",
                      y = "Happiness Score",
@@ -217,7 +223,7 @@ shinyServer(function(input, output) {
                 geom_point(shape = 19, size = 5) +
                 stat_smooth(method = "lm", col = "black") +
                 theme_light() +
-                scale_color_gradient("Happiness Rank", low = "limegreen",
+                scale_color_gradient("Happiness Rank", low = "pink",
                                      high = "black", na.value = "white") +
                 labs(x = "Employed in Industry",
                      y = "Happiness Score",
@@ -230,7 +236,7 @@ shinyServer(function(input, output) {
                 geom_point(shape = 19, size = 5) +
                 stat_smooth(method = "lm", col = "black") +
                 theme_light() +
-                scale_color_gradient("Happiness Rank", low = "limegreen",
+                scale_color_gradient("Happiness Rank", low = "pink",
                                      high = "black", na.value = "white") +
                 labs(x = "Employed in Services",
                      y = "Happiness Score",
