@@ -125,7 +125,7 @@ shinyServer(function(input, output) {
             stat_smooth(method = "lm", col = "black") +
             theme_light() +
             scale_color_gradient("Happiness Rank",
-                                 low = "black", high = "#B22222") +
+                                 low = "#B22222", high = "black") +
             labs(x = "Government Trust",
                  y = "Happiness Score",
                  Title = "Happiness Score vs. Gov. Trust Scatterplot")
