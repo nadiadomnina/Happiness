@@ -18,6 +18,7 @@ main_page <- tabPanel(
   # This content uses a sidebar layout
 
   titlePanel("What Makes Us Happy?"),
+  wellPanel(
   p(
     "our to-do list:", br(),
     "1. How to trim the white sides of the ggplot map? its annoying", br(),
@@ -28,9 +29,10 @@ main_page <- tabPanel(
       a certain continent at a time or something. I think it would be nice to display the top 10 countries,
       then those ranked 11-20, 21-30, and so on, you get my point.", br(),
     "7. maybe add photos of us to the last page if we have the time", br(),
-    "8. make the analysis more reader - friendly."
+    "8. make the analysis more reader - friendly.", br(),
+    "9. Add labels to plots. What does .75 life expectancy mean? thaose things"
   ),
-
+),
   wellPanel(
     style = "background: white",
     p("Investigating possible causes of happiness and lack of happiness around the world.")
@@ -38,7 +40,7 @@ main_page <- tabPanel(
 
   sidebarLayout(
     sidebarPanel(
-      selectInput(
+        radioButtons(
         inputId = "category",
         label = "Pick a Category to View",
         choices = c(
