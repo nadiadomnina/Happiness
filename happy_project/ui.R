@@ -19,20 +19,20 @@ main_page <- tabPanel(
 
   titlePanel("What Makes Us Happy?"),
   wellPanel(
-  p(
-    "our to-do list:", br(),
-    "1. How to trim the white sides of the ggplot map? its annoying", br(),
-    "2. write about what the happiness scores are, where they come from, how theyre calculated in the Background Information panel", br(),
-    strong("3. everyone needs to fill out the last about page!!!!!!!"), br(),
-    strong("4. in the conomy tab, we need to display the findings one by one with each selection, not all in one paragraph."), br(),
-    "3. Andrey said we should consider adding more interactivity on the maps. For example by displaying only
+    p(
+      "our to-do list:", br(),
+      "1. How to trim the white sides of the ggplot map? its annoying", br(),
+      "2. write about what the happiness scores are, where they come from, how theyre calculated in the Background Information panel", br(),
+      strong("3. everyone needs to fill out the last about page!!!!!!!"), br(),
+      strong("4. Economy analysis"), br(),
+      "3. Andrey said we should consider adding more interactivity on the maps. For example by displaying only
       a certain continent at a time or something. I think it would be nice to display the top 10 countries,
       then those ranked 11-20, 21-30, and so on, you get my point.", br(),
-    "7. maybe add photos of us to the last page if we have the time", br(),
-    "8. make the analysis more reader - friendly.", br(),
-    "9. Add labels to plots. What does .75 life expectancy mean? thaose things"
+      "7. maybe add photos of us to the last page if we have the time", br(),
+      "8. make the analysis more reader - friendly.", br(),
+      "9. Add labels to plots. What does .75 life expectancy mean? thaose things"
+    ),
   ),
-),
   wellPanel(
     style = "background: white",
     p("Investigating possible causes of happiness and lack of happiness around the world.")
@@ -40,7 +40,7 @@ main_page <- tabPanel(
 
   sidebarLayout(
     sidebarPanel(
-        radioButtons(
+      radioButtons(
         inputId = "category",
         label = "Pick a Category to View",
         choices = c(
@@ -135,7 +135,8 @@ page_three <- tabPanel(
       mainPanel(
         wellPanel(
           style = "background: white",
-          selectInput(
+          p("For economy, we researched the correlations between Happiness Scores and the following 4 different categories:"),
+          radioButtons(
             inputId = "economy_choice",
             label = "Pick a Category to View",
             choices = c(
@@ -146,33 +147,23 @@ page_three <- tabPanel(
             ),
             selected = 2
           ),
+        ),
 
 
+        wellPanel(
+          style = "background: white",
+          plotOutput("economy_plot"),
+        ),
 
-          wellPanel(
-            style = "background: white",
-            plotOutput("economy_plot"),
-          ),
-          wellPanel(
-            style = "background: white",
-            p("For economy, we found four different scatterplot of unemployed labor force,
-                        employed in agriculture, employed in industry, and employed in services. These independent variables
-                        of different work fields have different R-squared value. 
-                        For unemployed labor force, (error)
-                        For employed in agriculture, we found R-squared value of 0.56 with the independent variable of employed
-                        in agriculture associated with Happiness score. This represents employed in agriculture work field has
-                        56 percent of an acceptable correlation with Happiness score. However, our R value of employed in agriculture
-                        seems negative that have negative association where people work in agriculture work fields have less happiness score. 
-                        For employed in industry, we found R-squared value of 0.19 with the independent variable of employed in industry
-                        which have low association with Happiness score. This represents employed in industry has no correlation with happiness of people. 
-                        For the last scatterplot, we found R-squared value of 0.58 with the independent variable of employed
-                        in service associated with happiness score. This represents employed in service has 58 percent of an acceptable correlation with Happiness score. ")
-          )
+        wellPanel(
+          style = "background: white",
+          textOutput("economy_analysis"),
+        )
         )
       )
     )
   )
-)
+
 
 
 
