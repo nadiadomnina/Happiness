@@ -19,7 +19,7 @@ shinyServer(function(input, output) {
 
     
 #PAGE ONE INTERACTIVITY
-    output$heat_map = renderPlot({
+    output$heat_map = renderPlotly({
         
         if(input$category == 1 ){
             
@@ -37,7 +37,10 @@ shinyServer(function(input, output) {
                     fill = "Happiness Score",
                     title = "World Map: of Happiness Scores"
                 )+
-                coord_map(xlim=c(-180,180))
+                coord_map(xlim=c(-180,180))#+
+           # coord_fixed(ratio = 1, xlim = c(-180, 180))
+            
+            
             
         }
         
@@ -105,14 +108,15 @@ shinyServer(function(input, output) {
                     size = .1
                 ) +
                 coord_map() +
-                scale_fill_continuous(low = "white", high = "#B22222",
+                scale_fill_continuous(low = "white", high = "#AB82FF",
                                       na.value = "white") +
                 labs(fill = "Percent of Corruption",
                      title = "Percent of Corruption in each Country, 2017")+
                 coord_map(xlim=c(-180,180))
         }
  
-        map
+     
+        map = ggplotly(map, width = 1410, height = 790)
     })
     
 #--------------------------------------------------------------------------------------------------------------  
@@ -126,7 +130,7 @@ shinyServer(function(input, output) {
             stat_smooth(method = "lm", col = "black") +
             theme_light() +
             scale_color_gradient("Happiness Rank",
-                                 low = "#B22222", high = "black") +
+                                 low = "#AB82FF", high = "black") +
             labs(x = "Government Trust",
                  y = "Happiness Score",
                  Title = "Happiness Score vs. Gov. Trust Scatterplot")
