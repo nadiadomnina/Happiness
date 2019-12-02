@@ -80,7 +80,7 @@ page_one <- tabPanel(
           plotOutput("gdp_plot") # reactive output provided by leaflet
         ),
         wellPanel(
-          style = "background: white",
+          style = "background: lightskyblue",
           p(strong("R-Squared:"), gdp_r_squared),
         ),
         wellPanel(
@@ -111,7 +111,7 @@ page_two <- tabPanel(
           plotOutput("health_plot") # reactive output provided by leaflet
         ),
         wellPanel(
-          style = "background: white",
+          style = "background: orange",
           p(strong("R-Squared:"), health_r_squared),
         ),
         wellPanel(
@@ -156,7 +156,7 @@ page_three <- tabPanel(
         ),
 
         wellPanel(
-          style = "background: white",
+          style = "background: pink",
           textOutput("economy_analysis"),
         )
         )
@@ -183,7 +183,7 @@ page_four <- tabPanel(
           plotOutput("trust_plot") # reactive output provided by leaflet
         ),
         wellPanel(
-          style = "background: white",
+          style = "background: red",
           p(strong("R-Squared:"), gov_trust_r_squared),
         ),
         wellPanel(
