@@ -3,75 +3,61 @@
 # ______________________
 # Define UI for Application
 
-#test <- file.choose("data/happy_df.csv")
-#happy_df <- read.csv(test)
+# test <- file.choose("data/happy_df.csv")
+# happy_df <- read.csv(test)
 
 
 main_page <- tabPanel(
-    
-    setBackgroundColor(
-        color = c("lightgrey", "white"),
-        gradient = c("linear", "radial"),
-        direction = c("bottom", "top", "right", "left"),
-        shinydashboard = FALSE
-    ),
-    "Main", # label for the tab in the navbar
-    # show with a displayed title
-    # This content uses a sidebar layout
-    
-    titlePanel("What Makes Us Happy?"),
-    p("our to-do list:", br(),
-      strong("1. make the economy heat map"), br(),
-      "2. write about what the happiness scores are, where they come from, how theyre calculated in the Background Information panel", br(),
-      strong("3. everyone needs to fill out the last about page!!!!!!!"), br(),
-      strong("4. in the conomy tab, we need to display the findings one by one with each selection, not all in one paragraph."), br(),
-      "5. Make each page nicer to look at....probably will need to change the layout.
-      It needs to be consistent on each of the category tabs, but not on the others. Right now 
-      almost all of the pages look empty and boring", br(),
-      "6. Figure out how to make the maps on the first page bigger.", br(),
-      "Andrey said we should consider adding more interactivity on the maps. For example by displaying only
+  "Main", # label for the tab in the navbar
+  setBackgroundColor(
+    color = c("#CCFF99"),
+    shinydashboard = FALSE
+  ),
+
+  # show with a displayed title
+  # This content uses a sidebar layout
+
+  titlePanel("What Makes Us Happy?"),
+  p(
+    "our to-do list:", br(),
+    "1. How to trim the white sides of the ggplot map? its annoying", br(),
+    "2. write about what the happiness scores are, where they come from, how theyre calculated in the Background Information panel", br(),
+    strong("3. everyone needs to fill out the last about page!!!!!!!"), br(),
+    strong("4. in the conomy tab, we need to display the findings one by one with each selection, not all in one paragraph."), br(),
+    "3. Andrey said we should consider adding more interactivity on the maps. For example by displaying only
       a certain continent at a time or something. I think it would be nice to display the top 10 countries,
       then those ranked 11-20, 21-30, and so on, you get my point.", br(),
-      "7. maybe add photos of us to the last page if we have the time",br(),
-      "8. make the analysis more reader - friendly.", br(),
-      strong("9. Make consistent size dots for the scatterplots, and decide on colors"), br(),
-      "9. Get rid of lines on the map! Andrey said its a common ggplot problem but we should get rid of them"
-      ),
-    
-    
-    fluidRow(
-        column(
-            12,
-            mainPanel(
-                wellPanel(
-                    style = "background: lightgreen",
-                    p("Investigating possible causes of happiness and lack of happiness around the world.")
-                ),
-                
-                wellPanel(
-                    style = "background: white",
-                    selectInput(
-                        
-                        inputId = "category",
-                        label = "Pick a Category to View",
-                        choices = c(
-                            "Happiness Scores" = 1,
-                            "GDP" = 2,
-                            "Health" = 3,
-                            "Economy" = 4,
-                            "Government Trust" = 5),
-                            selected = 1
-                        ),
-                    ),
-                    
-                    wellPanel(
-                        style = "background: white",
-                        plotOutput("heat_map")
-                    )
-                )
-            )
-        )
+    "7. maybe add photos of us to the last page if we have the time", br(),
+    "8. make the analysis more reader - friendly."
+  ),
+
+  wellPanel(
+    style = "background: white",
+    p("Investigating possible causes of happiness and lack of happiness around the world.")
+  ),
+
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(
+        inputId = "category",
+        label = "Pick a Category to View",
+        choices = c(
+          "Happiness Scores" = 1,
+          "GDP" = 2,
+          "Health" = 3,
+          "Economy" = 4,
+          "Government Trust" = 5
+        ),
+        selected = 1
+        # ),
+      )
+      # ),
+    ),
+    mainPanel(
+      plotOutput("heat_map")
     )
+  )
+)
 
 
 
@@ -79,86 +65,95 @@ main_page <- tabPanel(
 
 
 page_one <- tabPanel(
-    "GDP", # label for the tab in the navbar
-    titlePanel("      GDP"), # show with a displayed title
-    
-    
-    
-    fluidRow(
-        column(
-            12,
-            mainPanel(
-                wellPanel(
-                    style = "background: white",
-                    plotOutput("gdp_plot") # reactive output provided by leaflet
-                ),
-                wellPanel(
-                    style = "background: white",
-                    p("In GDP per Capita scatterplot, we found R-squared vale of 0.66 with the independent variable of GDP per Capita is associated with dependent variable of Happiness Score.
+  "GDP", # label for the tab in the navbar
+
+  titlePanel("      GDP"), # show with a displayed title
+
+  fluidRow(
+    column(
+      12,
+      mainPanel(
+        wellPanel(
+          style = "background: white",
+          plotOutput("gdp_plot") # reactive output provided by leaflet
+        ),
+        wellPanel(
+          style = "background: white",
+          p(strong("R-Squared:"), gdp_r_squared),
+        ),
+        wellPanel(
+          style = "background: white",
+
+          p("In GDP per Capita scatterplot, we found R-squared vale of 0.66 with the independent variable of GDP per Capita is associated with dependent variable of Happiness Score.
                     This represents GDP per Capita has 66 percent of an acceptable correlation with Happiness score that shows GDP per Capita can determine Happiness of people. ")
-                )
-            )
         )
+      )
     )
+  )
 )
 
 
 page_two <- tabPanel(
-    "Health", # label for the tab in the navbar
-    titlePanel("Health"), # show with a displayed title
-    # This content uses a sidebar layout
-    
-    fluidRow(
-        column(
-            12,
-            mainPanel(
-                wellPanel(
-                    style = "background: white",
-                    plotOutput("health_plot") # reactive output provided by leaflet
-                ),
-                wellPanel(
-                    style = "background: white",
-                    p("In Health and Life expectancy scatterplot, we found R-squared value of 0.61 with the independent variable of Health and Life expectancy is associated with dependent variable of Happiness score.
+  "Health", # label for the tab in the navbar
+
+
+  titlePanel("Health"), # show with a displayed title
+  # This content uses a sidebar layout
+
+  fluidRow(
+    column(
+      12,
+      mainPanel(
+        wellPanel(
+          style = "background: white",
+          plotOutput("health_plot") # reactive output provided by leaflet
+        ),
+        wellPanel(
+          style = "background: white",
+          p(strong("R-Squared:"), health_r_squared),
+        ),
+        wellPanel(
+          style = "background: white",
+          p("In Health and Life expectancy scatterplot, we found R-squared value of 0.61 with the independent variable of Health and Life expectancy is associated with dependent variable of Happiness score.
                     This represents Health and Life expectancy has 61 percent of an acceptable correlation with Happiness score which Health and Life expectancy affects Happiness of people. ")
-                )
-            )
         )
+      )
     )
+  )
 )
 
 page_three <- tabPanel(
-    "Economy", # label for the tab in the navbar
-    titlePanel("Economy"), # show with a displayed title
-    
-    
-    fluidRow(
-        column(
-            12,
-            mainPanel(
-                wellPanel(
-                    style = "background: white",
-                    selectInput(
-                        inputId = "economy_choice",
-                        label = "Pick a Category to View",
-                        choices = c(
-                            "% Unemployed Labor Force vs. Happiness Score" = 1,
-                            "% Employed in Agriculture vs. Happiness Score" = 2,
-                            "% Employed in Industry vs. Happiness Score" = 3,
-                            "% Employed in Services vs. Happiness Score" = 4
-                        ),
-                        selected = 2
-                    ),
-                    
-                    
-                    
-                    wellPanel(
-                        style = "background: white",
-                        plotOutput("economy_plot"),
-    
-                    ),
-                    wellPanel(
-                        style = "background: white",
-                        p("For economy, we found four different scatterplot of unemployed labor force,
+  "Economy", # label for the tab in the navbar
+  titlePanel("Economy"), # show with a displayed title
+
+
+  fluidRow(
+    column(
+      12,
+      mainPanel(
+        wellPanel(
+          style = "background: white",
+          selectInput(
+            inputId = "economy_choice",
+            label = "Pick a Category to View",
+            choices = c(
+              "% Unemployed Labor Force vs. Happiness Score" = 1,
+              "% Employed in Agriculture vs. Happiness Score" = 2,
+              "% Employed in Industry vs. Happiness Score" = 3,
+              "% Employed in Services vs. Happiness Score" = 4
+            ),
+            selected = 2
+          ),
+
+
+
+          wellPanel(
+            style = "background: white",
+            plotOutput("economy_plot"),
+          ),
+          wellPanel(
+            style = "background: white",
+            p("For economy, we found four different scatterplot of unemployed labor force,
                         employed in agriculture, employed in industry, and employed in services. These independent variables
                         of different work fields have different R-squared value. 
                         For unemployed labor force, (error)
@@ -170,11 +165,11 @@ page_three <- tabPanel(
                         which have low association with Happiness score. This represents employed in industry has no correlation with happiness of people. 
                         For the last scatterplot, we found R-squared value of 0.58 with the independent variable of employed
                         in service associated with happiness score. This represents employed in service has 58 percent of an acceptable correlation with Happiness score. ")
-                    )
-                )
-            )
+          )
         )
+      )
     )
+  )
 )
 
 
@@ -183,141 +178,130 @@ page_three <- tabPanel(
 
 
 page_four <- tabPanel(
-    "Government Trust", # label for the tab in the navbar
-    titlePanel("Government Trust"), # show with a displayed title
-    
-    fluidRow(
-        column(
-            12,
-            mainPanel(
-                wellPanel(
-                    style = "background: white",
-                    plotOutput("trust_plot") # reactive output provided by leaflet
-                ),
-                wellPanel(
-                    style = "background: white",
-                    p("In Government trust scatterplot, we found R-squared value of 0.18 with the independent variable of Government trust which have low association with Happiness score. 
+  "Government Trust", # label for the tab in the navbar
+  titlePanel("Government Trust"), # show with a displayed title
+
+  fluidRow(
+    column(
+      12,
+      mainPanel(
+        wellPanel(
+          style = "background: white",
+          plotOutput("trust_plot") # reactive output provided by leaflet
+        ),
+        wellPanel(
+          style = "background: white",
+          p(strong("R-Squared:"), gov_trust_r_squared),
+        ),
+        wellPanel(
+          style = "background: white",
+          p("In Government trust scatterplot, we found R-squared value of 0.18 with the independent variable of Government trust which have low association with Happiness score. 
                       This represents government trust does not have any correlation with Happiness score.")
-                )
-            )
         )
+      )
     )
+  )
 )
 
 
 research_question_page <- tabPanel(
-    "Information", # label for the tab in the navbar
-    
-    # This content uses a column layouut
-    fluidRow(
-        column(10, mainPanel(
-            h2("Background Information:"),
-            wellPanel("insert background info here"),
-            h2("Research Question:"),
-            wellPanel("What effect do different country characteristics have on people's happiness?
+  "Information", # label for the tab in the navbar
+
+  # This content uses a column layouut
+  fluidRow(
+    column(10, mainPanel(
+      h2("Background Information:"),
+      wellPanel("insert background info here"),
+      h2("Research Question:"),
+      wellPanel("What effect do different country characteristics have on people's happiness?
                       Is country happiness calculated based on the same characteristics as other countries,
                       or does each country have a different set of characteristics leading to its happiness")
-        ))
-    )
+    ))
+  )
 )
 
 
 
 
 conclusion_page <- tabPanel(
-    "Conclusions", # label for the tab in the navbar
-    titlePanel("Conclusions"), # show with a displayed title
-    
-    # This content uses a column layouut
-    fluidRow(
-        column(
-            10,
-            mainPanel(
-                wellPanel("In conclusion, GDP per Capita, and Health and Life expectancy have the most relevant to happiness of people which both have about 60 percent of R-square value.
+  "Conclusions", # label for the tab in the navbar
+  titlePanel("Conclusions"), # show with a displayed title
+
+  # This content uses a column layouut
+  fluidRow(
+    column(
+      10,
+      mainPanel(
+        wellPanel("In conclusion, GDP per Capita, and Health and Life expectancy have the most relevant to happiness of people which both have about 60 percent of R-square value.
                  Other than that, employment of individuals also impact on happiness that people in service have the highest correlation of 58 percent between employment of industry, agriculture, service, and unemployment. ")
-            )
-        )
+      )
     )
+  )
 )
 
 
 
 about_us_page <- tabPanel(
-    "About Us", # label for the tab in the navbar
-    titlePanel("The Team"), # show with a displayed title
-    
-    # This content uses a column layouut
-    fluidRow(
-        column(
-            10,
-            mainPanel(
-                
-                # Nadia
-                wellPanel(
-                    h2("Nadia Domnina"),
-                    strong("Graduation Year:"),
-                    p("2022"),
-                    strong("Major:"),
-                    p("Industrial Design"),
-                    strong("Personal Statement:"),
-                    p("insert here")
-                ),
-                
-                # Vinay
-                wellPanel(
-                    h2("Vinay Patel"),
-                    strong("Graduation Year:"),
-                    p("insert here"),
-                    strong("Major/ Intended Major:"),
-                    p("insert here"),
-                    strong("Personal Statement:"),
-                    p("insert here")
-                ),
-                
-                # Hanna
-                wellPanel(
-                    h2("Hanna Song"),
-                    strong("Graduation Year:"),
-                    p("insert here"),
-                    strong("Major/ Intended Major:"),
-                    p("insert here"),
-                    strong("Personal Statement:"),
-                    p("insert here")
-                ),
-                
-                # Vincent
-                wellPanel(
-                    h2("Vincent Vo"),
-                    strong("Graduation Year:"),
-                    p("2022"),
-                    strong("Major/ Intended Major:"),
-                    p("Informatics"),
-                    strong("Personal Statement:"),
-                    p("insert here")
-                )
-            )
+  "About Us", # label for the tab in the navbar
+  titlePanel("The Team"), # show with a displayed title
+
+  # This content uses a column layouut
+  fluidRow(
+    column(
+      10,
+      mainPanel(
+
+        # Nadia
+        wellPanel(
+          h2("Nadia Domnina"),
+          strong("Graduation Year:"),
+          p("2022"),
+          strong("Major:"),
+          p("Industrial Design")
+        ),
+
+        # Vinay
+        wellPanel(
+          h2("Vinay Patel"),
+          strong("Graduation Year:"),
+          p("insert here"),
+          strong("Major/ Intended Major:"),
+          p("insert here")
+        ),
+
+        # Hanna
+        wellPanel(
+          h2("Hanna Song"),
+          strong("Graduation Year:"),
+          p("insert here"),
+          strong("Major/ Intended Major:"),
+          p("insert here")
+        ),
+
+        # Vincent
+        wellPanel(
+          h2("Vincent Vo"),
+          strong("Graduation Year:"),
+          p("2022"),
+          strong("Major/ Intended Major:"),
+          p("Informatics")
         )
+      )
     )
+  )
 )
 
 
 
 
 shinyUI(navbarPage(
-    "Happiness Report", # application title
-    main_page,
-    research_question_page,
-    page_one,
-    page_two,
-    page_three,
-    page_four,
-    conclusion_page,
-    about_us_page
+  "Happiness Report", # application title
+  main_page,
+  research_question_page,
+  page_one,
+  page_two,
+  page_three,
+  page_four,
+  conclusion_page,
+  about_us_page
 ))
-
-
-
-
-
-
-
