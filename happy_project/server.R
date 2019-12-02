@@ -23,7 +23,7 @@ shinyServer(function(input, output) {
         
         if(input$category == 1 ){
             
-            map =  ggplot(world_shape) +
+            map1 =  ggplot(world_shape) +
                     geom_polygon(
                         mapping = aes(x = Longitude, y = Latitude, group = group,
                                       fill = Happiness.Score),
@@ -38,6 +38,7 @@ shinyServer(function(input, output) {
                         title = "World Map: of Happiness Scores"
                     )+
               coord_map(xlim=c(-180,180))
+            
         }
         
         if(input$category == 2){
@@ -200,6 +201,7 @@ shinyServer(function(input, output) {
                 labs(x = "Unemployed Labor Force",
                      y = "Happiness Score",
                      Title = "Unemployment Rate vs Happiness Score Scatterplot")
+       
             
             
         }
@@ -246,6 +248,34 @@ shinyServer(function(input, output) {
         plot
     })
 
+    
+    output$economy_analysis = renderText({
+        
+        if(input$economy_choice == 1 ){
+            text = paste(("R value:"),
+                         employment1_r_squared)
+        }
+        
+        if(input$economy_choice == 2 ){
+            text = paste(("R value:"),
+                         employment2_r_squared)
+        }
+        
+        
+        if(input$economy_choice == 3 ){
+            text = paste(("R value:"),
+                         employment3_r_squared)
+        }
+        
+        if(input$economy_choice == 4 ){
+            text = paste(("R value:"),
+                         employment4_r_squared)
+        }
+        text
+    })
+    
+    
+    
 #--------------------------------------------------------------------------------------------------------------  
  
 })
