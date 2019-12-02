@@ -23,21 +23,21 @@ shinyServer(function(input, output) {
         
         if(input$category == 1 ){
             
-            map1 =  ggplot(world_shape) +
-                    geom_polygon(
-                        mapping = aes(x = Longitude, y = Latitude, group = group,
-                                      fill = Happiness.Score),
-                        color = "gray", # show country outlines
-                        size = .1 # thinly stroked
-                    ) +
-                    coord_map() + # use a map-based coordinate system
-                    scale_fill_gradient(low = "black", high = "greenyellow",
-                                        na.value = "white") +
-                    labs(
-                        fill = "Happiness Score",
-                        title = "World Map: of Happiness Scores"
-                    )+
-              coord_map(xlim=c(-180,180))
+            map =  ggplot(world_shape) +
+                geom_polygon(
+                    mapping = aes(x = Longitude, y = Latitude, group = group,
+                                  fill = Happiness.Score),
+                    color = "gray", # show country outlines
+                    size = .1 # thinly stroked
+                ) +
+                coord_map() + # use a map-based coordinate system
+                scale_fill_gradient(low = "black", high = "greenyellow",
+                                    na.value = "white") +
+                labs(
+                    fill = "Happiness Score",
+                    title = "World Map: of Happiness Scores"
+                )+
+                coord_map(xlim=c(-180,180))
             
         }
         
@@ -201,10 +201,8 @@ shinyServer(function(input, output) {
                 labs(x = "Unemployed Labor Force",
                      y = "Happiness Score",
                      Title = "Unemployment Rate vs Happiness Score Scatterplot")
-       
-            
-            
         }
+        
         if(input$economy_choice == 2 ){
             plot = ggplot(employment_df, aes(x = Employment..Agriculture....of.employed.,
                                              y = Happiness.Score, color = Happiness.Rank,
@@ -218,6 +216,7 @@ shinyServer(function(input, output) {
                      y = "Happiness Score",
                      Title = "Agriculture Employment vs Happiness Score Scatterplot")
         }
+        
         if(input$economy_choice == 3 ){
             plot = ggplot(employment_df, aes(x = Employment..Industry....of.employed.,
                                              y = Happiness.Score, color = Happiness.Rank,
@@ -231,6 +230,7 @@ shinyServer(function(input, output) {
                      y = "Happiness Score",
                      Title = "Industry Employment vs Happiness Score Scatterplot")
         }
+        
         if(input$economy_choice == 4 ){
             plot =  ggplot(employment_df, aes(x = Employment..Services....of.employed.,
                                               y = Happiness.Score, color = Happiness.Rank,
