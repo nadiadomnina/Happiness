@@ -17,46 +17,59 @@ main_page <- tabPanel(
   # show with a displayed title
   # This content uses a sidebar layout
 
+
   titlePanel("What Makes Us Happy?"),
+
+
+
   wellPanel(
-    p(
-      "our to-do list:", br(),
-      "1. How to trim the white sides of the ggplot map? its annoying", br(),
-      "2. write about what the happiness scores are, where they come from, how theyre calculated in the Background Information panel", br(),
-      strong("3. everyone needs to fill out the last about page!!!!!!!"), br(),
-      strong("4. Economy analysis"), br(),
-      "3. Andrey said we should consider adding more interactivity on the maps. For example by displaying only
+      p(
+          "our to-do list:", br(),
+          "2. write about what the happiness scores are, where they come from, how theyre calculated in the Background Information panel", br(),
+          strong("3. everyone needs to fill out the last about page!!!!!!!"), br(),
+          strong("4. Economy analysis"), br(),
+          "3. Andrey said we should consider adding more interactivity on the maps. For example by displaying only
       a certain continent at a time or something. I think it would be nice to display the top 10 countries,
       then those ranked 11-20, 21-30, and so on, you get my point.", br(),
-      "7. maybe add photos of us to the last page if we have the time", br(),
-      "8. make the analysis more reader - friendly.", br(),
-      "9. Add labels to plots. What does .75 life expectancy mean? thaose things"
-    ),
+          "7. maybe add photos of us to the last page if we have the time", br(),
+          "8. make the analysis more reader - friendly.", br(),
+          "9. Add labels to plots. What does .75 life expectancy mean? thaose things"
+      ),
   ),
+
   wellPanel(
     style = "background: white",
     p("Investigating possible causes of happiness and lack of happiness around the world.")
   ),
 
-  sidebarLayout(
-    sidebarPanel(
-      radioButtons(
-        inputId = "category",
-        label = "Pick a Category to View",
-        choices = c(
-          "Happiness Scores" = 1,
-          "GDP" = 2,
-          "Health" = 3,
-          "Economy" = 4,
-          "Government Trust" = 5
-        ),
-        selected = 1
-        # ),
+  # sidebarLayout(
+  fluidPage(
+    fluidRow(
+        
+      column(
+        3,
+
+        # sidebarPanel(
+        wellPanel(
+          radioButtons(
+            inputId = "category",
+            label = "Pick a Category to View",
+            choices = c(
+              "Happiness Scores" = 1,
+              "GDP" = 2,
+              "Health" = 3,
+              "Economy" = 4,
+              "Government Trust" = 5
+            ),
+            selected = 1
+          )
+        )
+      ),
+      # mainPanel(
+      column(
+        9,
+        plotlyOutput("heat_map")
       )
-      # ),
-    ),
-    mainPanel(
-      plotOutput("heat_map")
     )
   )
 )
@@ -159,10 +172,10 @@ page_three <- tabPanel(
           style = "background: pink",
           textOutput("economy_analysis"),
         )
-        )
       )
     )
   )
+)
 
 
 
@@ -183,7 +196,7 @@ page_four <- tabPanel(
           plotOutput("trust_plot") # reactive output provided by leaflet
         ),
         wellPanel(
-          style = "background: red",
+          style = "background: #AB82FF",
           p(strong("R-Squared:"), gov_trust_r_squared),
         ),
         wellPanel(
