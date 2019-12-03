@@ -1,4 +1,4 @@
-
+source("analysis_2.R")
 
 # ______________________
 # Define UI for Application
@@ -34,7 +34,7 @@ main_page <- tabPanel(
           "7. maybe add photos of us to the last page if we have the time", br(),
           "8. make the analysis more reader - friendly.", br(),
           "9. Add labels to plots. What does .75 life expectancy mean? thaose things"
-      ),
+      )
   ),
 
   wellPanel(
@@ -94,15 +94,13 @@ page_one <- tabPanel(
         ),
         wellPanel(
           style = "background: lightskyblue",
-          p(strong("R-Squared:"), gdp_r_squared),
+          p(strong("R-Squared:"), gdp_r_squared)
         ),
         wellPanel(
           style = "background: white",
-
           p("In GDP per Capita scatterplot, we found R-squared vale of 0.66 with the independent variable of GDP per Capita is associated with dependent variable of Happiness Score.
                     This represents GDP per Capita has 66 percent of an acceptable correlation with Happiness score that shows GDP per Capita can determine Happiness of people. 
-                    This further lead government of each countries to understand how GDP of country can affect to individual’s happiness that higher GDP can lead to have higher satisfaction of individuals.
-")
+                    This further lead government of each countries to understand how GDP of country can affect to individual’s happiness that higher GDP can lead to have higher satisfaction of individuals.")
         )
       )
     )
@@ -127,7 +125,7 @@ page_two <- tabPanel(
         ),
         wellPanel(
           style = "background: orange",
-          p(strong("R-Squared:"), health_r_squared),
+          p(strong("R-Squared:"), health_r_squared)
         ),
         wellPanel(
           style = "background: white",
@@ -161,18 +159,18 @@ page_three <- tabPanel(
               "% Employed in Services vs. Happiness Score" = 4
             ),
             selected = 2
-          ),
+          )
         ),
 
 
         wellPanel(
           style = "background: white",
-          plotOutput("economy_plot"),
+          plotOutput("economy_plot")
         ),
 
         wellPanel(
           style = "background: pink",
-          textOutput("economy_analysis"),
+          textOutput("economy_analysis")
         )
       )
     )
@@ -199,7 +197,7 @@ page_four <- tabPanel(
         ),
         wellPanel(
           style = "background: #AB82FF",
-          p(strong("R-Squared:"), gov_trust_r_squared),
+          p(strong("R-Squared:"), gov_trust_r_squared)
         ),
         wellPanel(
           style = "background: white",
@@ -222,8 +220,7 @@ research_question_page <- tabPanel(
       wellPanel("Happiness scores and rankings are from the Gallup World Poll data over different countries. Happiness scores are based on answer evaluation question such as rate individual’s current lives on scale between 0 to 10. 
       The scores are nationally representative samples between years 2013 to 2016 in six factors of economic production, social support, life expectancy, freedom, absence of corruption, and generosity. 
       We also combined this Happiness scores with UN data that shows more characteristics of different countries such as GDP, economy, employment, population growth rate, etc. We used these data to integrate several factors to answer our research question below. 
-      We used coefficient of determination, denoted R squared, to analyze how dependent variable of factors can correlate to the independent variable of Happiness score. 
-"),
+      We used coefficient of determination, denoted R squared, to analyze how dependent variable of factors can correlate to the independent variable of Happiness score."),
       h2("Research Question:"),
       wellPanel("What effect do different country characteristics have on people's happiness?
                       Is country happiness calculated based on the same characteristics as other countries,
@@ -276,9 +273,9 @@ about_us_page <- tabPanel(
         wellPanel(
           h2("Vinay Patel"),
           strong("Graduation Year:"),
-          p("insert here"),
+          p("2020"),
           strong("Major/ Intended Major:"),
-          p("insert here")
+          p("Intended Double Major in Informatics and Economics")
         ),
 
         # Hanna
