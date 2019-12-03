@@ -257,28 +257,34 @@ shinyServer(function(input, output) {
         
         if(input$economy_choice == 1 ){
             text = paste(("R value:"),
-                         employment1_r_squared)
+                         employment1_r_squared,
+                         ("For unemployment of labor force, we found R-squared value of 3% with the independent variable of employed in unemployed labor force has almost no associated with Happiness score. This represents how unemployment influences negatively with individual’s happiness.
+"))
         }
         
         if(input$economy_choice == 2 ){
             text = paste(("R value:"),
-                         employment2_r_squared)
+                         employment2_r_squared,
+                         ("For employment in agriculture, we found R-squared value of 56% with the independent variable of employed in agriculture associated with Happiness score. This represents employed in agriculture work field has an acceptable correlation with Happiness score. However, our R value of employed in agriculture seems negative that have negative association where people work in agriculture work fields have less happiness score. 
+"))
         }
         
         
         if(input$economy_choice == 3 ){
             text = paste(("R value:"),
-                         employment3_r_squared)
+                         employment3_r_squared,
+                         ("For employment in industry, we found R-squared value of 19% with the independent variable of employed in industry which have low association with Happiness score. This represents employed in industry has no correlation with happiness of people. 
+"))
         }
         
         if(input$economy_choice == 4 ){
             text = paste(("R value:"),
-                         employment4_r_squared)
+                         employment4_r_squared,
+                         ("For employment in services, we found R-squared value of 58% with the independent variable of employed in service associated with happiness score. This represents employed in service has an acceptable correlation with Happiness score. 
+"))
         }
         text
     })
-    
-    
     
 #--------------------------------------------------------------------------------------------------------------  
  
