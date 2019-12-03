@@ -21,13 +21,12 @@ main_page <- tabPanel(
   titlePanel("What Makes Us Happy?"),
 
 
-
   wellPanel(
-      p(
-          "our to-do list:", br(),
-          "1. make the analysis more reader - friendly.", br(),
-          strong("2. Add labels to plots AND describe the avriables in the analysis. What does .75 life expectancy mean? those things")
-      )
+    p(
+      "our to-do list:", br(),
+      "1. make the analysis more reader - friendly.", br(),
+      strong("2. Add labels to plots AND describe the avriables in the analysis. What does .75 life expectancy mean? those things")
+    )
   ),
 
   wellPanel(
@@ -38,7 +37,6 @@ main_page <- tabPanel(
   # sidebarLayout(
   fluidPage(
     fluidRow(
-        
       column(
         3,
 
@@ -70,28 +68,31 @@ main_page <- tabPanel(
 
 research_question_page <- tabPanel(
   "Information", # label for the tab in the navbar
-  
+
   # This content uses a column layouut
   fluidRow(
-    column(10, 
-           mainPanel(
-             h2("Background Information:"),
-             wellPanel(
-               style = "background: white",
-               p("Happiness scores and rankings are from the Gallup World Poll data over different countries. Happiness scores are based on answer evaluation question such as rate individual’s current lives on scale between 0 to 10. 
+    column(
+      10,
+      mainPanel(
+        h2("Background Information:"),
+        wellPanel(
+          style = "background: white",
+          p("Happiness scores and rankings are from the Gallup World Poll data over different countries. Happiness scores are based on answer evaluation question such as rate individual’s current lives on scale between 0 to 10. 
             The scores are nationally representative samples between years 2013 to 2016 in six factors of economic production, social support, life expectancy, freedom, absence of corruption, and generosity. 
             We also combined this Happiness scores with UN data that shows more characteristics of different countries such as GDP, economy, employment, population growth rate, etc. We used these data to integrate several factors to answer our research question below. 
             We used coefficient of determination, denoted R squared, to analyze how dependent variable of factors can correlate to the independent variable of Happiness score.", style = "font-size:20px")
-             ),
-             
-             h2("Research Question:"),
-             wellPanel(
-               style = "background: white",
-               p("1. What effect do different country characteristics have on people's happiness?", br(),
-                 "2. Is country happiness calculated based on the same characteristics as other countries,
-            or does each country have a different set of characteristics leading to its happiness?", style = "font-size:20px")
-             )
-           )
+        ),
+
+        h2("Research Question:"),
+        wellPanel(
+          style = "background: white",
+          p("1. What effect do different country characteristics have on people's happiness?", br(),
+            "2. Is country happiness calculated based on the same characteristics as other countries,
+            or does each country have a different set of characteristics leading to its happiness?",
+            style = "font-size:20px"
+          )
+        )
+      )
     )
   )
 )
@@ -198,7 +199,6 @@ page_three <- tabPanel(
           style = "background: white",
           textOutput("economy_r_sqaured"),
           textOutput("economy_analysis"),
-          
         )
       )
     )
