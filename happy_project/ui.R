@@ -215,17 +215,24 @@ research_question_page <- tabPanel(
 
   # This content uses a column layouut
   fluidRow(
-    column(10, mainPanel(
-      h2("Background Information:"),
-      wellPanel("Happiness scores and rankings are from the Gallup World Poll data over different countries. Happiness scores are based on answer evaluation question such as rate individual’s current lives on scale between 0 to 10. 
-      The scores are nationally representative samples between years 2013 to 2016 in six factors of economic production, social support, life expectancy, freedom, absence of corruption, and generosity. 
-      We also combined this Happiness scores with UN data that shows more characteristics of different countries such as GDP, economy, employment, population growth rate, etc. We used these data to integrate several factors to answer our research question below. 
-      We used coefficient of determination, denoted R squared, to analyze how dependent variable of factors can correlate to the independent variable of Happiness score."),
-      h2("Research Question:"),
-      wellPanel("What effect do different country characteristics have on people's happiness?
-                      Is country happiness calculated based on the same characteristics as other countries,
-                      or does each country have a different set of characteristics leading to its happiness")
-    ))
+    column(10, 
+      mainPanel(
+        h2("Background Information:"),
+        wellPanel(
+          p("Happiness scores and rankings are from the Gallup World Poll data over different countries. Happiness scores are based on answer evaluation question such as rate individual’s current lives on scale between 0 to 10. 
+            The scores are nationally representative samples between years 2013 to 2016 in six factors of economic production, social support, life expectancy, freedom, absence of corruption, and generosity. 
+            We also combined this Happiness scores with UN data that shows more characteristics of different countries such as GDP, economy, employment, population growth rate, etc. We used these data to integrate several factors to answer our research question below. 
+            We used coefficient of determination, denoted R squared, to analyze how dependent variable of factors can correlate to the independent variable of Happiness score.", style = "font-size:20px")
+        ),
+      
+        h2("Research Question:"),
+        wellPanel(
+          p("What effect do different country characteristics have on people's happiness?
+            Is country happiness calculated based on the same characteristics as other countries,
+            or does each country have a different set of characteristics leading to its happiness", style = "font-size:20px")
+        )
+      )
+    )
   )
 )
 
@@ -241,8 +248,10 @@ conclusion_page <- tabPanel(
     column(
       10,
       mainPanel(
-        wellPanel("In conclusion, GDP per Capita, and Health and Life expectancy have the most relevant to happiness of people which both have about 60 percent of R-square value.
-                 Other than that, employment of individuals also impact on happiness that people in service have the highest correlation of 58 percent between employment of industry, agriculture, service, and unemployment. ")
+        wellPanel(
+          p("In conclusion, GDP per Capita, and Health and Life expectancy have the most relevant to happiness of people which both have about 60 percent of R-square value.
+            Other than that, employment of individuals also impact on happiness that people in service have the highest correlation of 58 percent between employment of industry, agriculture, service, and unemployment.", style = "font-size:25px")
+        )
       )
     )
   )
