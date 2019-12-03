@@ -252,8 +252,7 @@ shinyServer(function(input, output) {
         plot
     })
 
-    
-    
+
     output$economy_r_squared = renderText({
         
         
