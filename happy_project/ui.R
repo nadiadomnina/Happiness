@@ -77,10 +77,12 @@ research_question_page <- tabPanel(
         h2("Background Information:"),
         wellPanel(
           style = "background: white",
-          p("Happiness scores and rankings are from the Gallup World Poll data over different countries. Happiness scores are based on answer evaluation question such as rate individual’s current lives on scale between 0 to 10. 
-            The scores are nationally representative samples between years 2013 to 2016 in six factors of economic production, social support, life expectancy, freedom, absence of corruption, and generosity. 
-            We also combined this Happiness scores with UN data that shows more characteristics of different countries such as GDP, economy, employment, population growth rate, etc. We used these data to integrate several factors to answer our research question below. 
-            We used coefficient of determination, denoted R squared, to analyze how dependent variable of factors can correlate to the independent variable of Happiness score.", style = "font-size:20px")
+          p("Happiness scores and rankings are from the Gallup World Poll data from different countries.
+          Happiness scores are based on answer evaluation questions such as those asking an individual to rank their current lives on scale between 0 to 10. 
+            The scores used in this study are nationally representative samples from 2017, using factors of economic production, social support, life expectancy, freedom, absence of corruption, and generosity.", br(),
+            "We combined this Happiness Score data with UN data that shows more characteristics of different countries() such as GDP, economy, employment, population growth rate, etc.)
+            We used these data to integrate several factors to answer our research questions. 
+            We used coefficient of determination, denoted R-squared, to analyze how dependent variables can correlate to the independent variable of Happiness score.", style = "font-size:18px")
         ),
 
         h2("Research Question:"),
