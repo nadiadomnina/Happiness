@@ -1,4 +1,5 @@
 source("analysis_2.R")
+library(shinyWidgets)
 
 # ______________________
 # Define UI for Application
@@ -147,7 +148,7 @@ page_three <- tabPanel(
       12,
       mainPanel(
         wellPanel(
-          style = "background: white",
+          style = "background:white",
           p("For economy, we researched the correlations between Happiness Scores and the following 4 different categories:"),
           radioButtons(
             inputId = "economy_choice",
@@ -164,12 +165,12 @@ page_three <- tabPanel(
 
 
         wellPanel(
-          style = "background: white",
+          style = "background:white",
           plotOutput("economy_plot")
         ),
 
         wellPanel(
-          style = "background: pink",
+          style = "background:pink",
           textOutput("economy_analysis")
         )
       )
@@ -192,15 +193,15 @@ page_four <- tabPanel(
       12,
       mainPanel(
         wellPanel(
-          style = "background: white",
+          style = "background:white",
           plotOutput("trust_plot") # reactive output provided by leaflet
         ),
         wellPanel(
-          style = "background: #AB82FF",
+          style = "background:#AB82FF",
           p(strong("R-Squared:"), gov_trust_r_squared)
         ),
         wellPanel(
-          style = "background: white",
+          style = "background:white",
           p("In Government trust scatterplot, we found R-squared value of 0.18 with the independent variable of Government trust which have low association with Happiness score. 
                       This represents government trust does not have any correlation with Happiness score.")
         )
