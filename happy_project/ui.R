@@ -232,9 +232,9 @@ page_four <- tabPanel(
         wellPanel(
 
           style = "background: white",
-          p("Although we expected a high correlation between government corruption rates and happiness, our results proved otherwise. The found coefficient of determination
-          was only 0.18. This number is too low to be considered valuble, especially given that there are less than 200 samples.
-          This shows that government trust does not have any correlation with Happiness scores.")
+          p("In this section we explored the relationship between a country's trust in government (unit unknown) and their Happiness score. Although we expected a high correlation between government corruption rates and happiness, our results proved otherwise. The found coefficient of determination
+          was only 0.18. This number is too low to be considered valuable, especially given that there are less than 200 samples.
+          This shows that government trust does not have a strong correlation with Happiness scores.")
         )
       )
     )
