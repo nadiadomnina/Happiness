@@ -1,5 +1,16 @@
 # DF Manipulation Document
-
+library(dplyr)
+library(stringr)
+library("knitr")
+library(tidyr)
+library(ggplot2)
+library(maps)
+library(leaflet)
+library(ggpmisc)
+library(plotly)
+library(rworldmap)
+library(fields)
+library(mapproj)
 
 #read in the data 
 happy_df <- read.csv("data/happy_df.csv", stringsAsFactors = FALSE)

@@ -1,4 +1,5 @@
 source("analysis_2.R")
+library(shinyWidgets)
 
 # ______________________
 # Define UI for Application
@@ -71,7 +72,7 @@ research_question_page <- tabPanel(
           The scores used in this Happiness study are nationally representative samples of all countries of the world in 2017.", br(),
            style = "font-size:18px")
         ),
-   
+
         h2("Research Question:"),
         h4("What are we trying to learn?"),
         wellPanel(
@@ -85,18 +86,18 @@ research_question_page <- tabPanel(
         h4("How will we solve our problem?"),
         wellPanel(
           style = "background: white",
-          
+
           p( "In our research, we combined the Gallup Happiness data with UN data that shows more characteristics of different countries (such as GDP, economy, employment, population growth rate, etc.).
           We then decided on the most likely categories that can effect happiness, settling on 4 different categories:", br(),
              "1. GDP", br(),
              "2. Health (Life Expectancy)", br(),
-             "3. Economy (Employment Characteristics)", br(), 
+             "3. Economy (Employment Characteristics)", br(),
              "4. Trust in Government", br(),
              "We then created scatter plots of data that related to those categories and analyzed the relationship between them and the observed happiness scores.
              We calculated their coefficients of determination (R-squared values) and compared them to each other.",
              style = "font-size:18px")
         )
-        
+
       )
     )
   )
@@ -157,7 +158,7 @@ page_two <- tabPanel(
         ),
         wellPanel(
           style = "background: white",
-          p("In this section we explored the relationship between a country's average Life Expectancy (unit unknown) and their Happiness score. 
+          p("In this section we explored the relationship between a country's average Life Expectancy (unit unknown) and their Happiness score.
           The results of this were as expected, the higher the life expecancy, the greater the happiness. The coefficient of determination is 0.61, also showing a positive correaltion.
           This only makes sense, since people who arent in constant fear for their and their family's life can focus on life goals and dreams, making their life more satisfactory.")
       )
@@ -176,7 +177,7 @@ page_three <- tabPanel(
       12,
       mainPanel(
         wellPanel(
-          style = "background: white",
+          style = "background:white",
           p("For economy, we researched the correlations between Happiness Scores and the following 4 different categories:"),
           radioButtons(
             inputId = "economy_choice",
@@ -193,7 +194,7 @@ page_three <- tabPanel(
 
 
         wellPanel(
-          style = "background: white",
+          style = "background:white",
           plotOutput("economy_plot")
         ),
         wellPanel(
@@ -204,7 +205,7 @@ page_three <- tabPanel(
         wellPanel(
           style = "background: white",
           textOutput("economy_r_sqaured"),
-          textOutput("economy_analysis"),
+          textOutput("economy_analysis")
         )
       )
     )
@@ -221,17 +222,18 @@ page_four <- tabPanel(
       12,
       mainPanel(
         wellPanel(
-          style = "background: white",
+          style = "background:white",
           plotOutput("trust_plot") # reactive output provided by leaflet
         ),
         wellPanel(
-          style = "background: #AB82FF",
+          style = "background:#AB82FF",
           p(strong("R-Squared:"), gov_trust_r_squared)
         ),
         wellPanel(
+
           style = "background: white",
           p("Although we expected a high correlation between government corruption rates and happiness, our results proved otherwise. The found coefficient of determination
-          was only 0.18. This number is too low to be considered valuble, especially given that there are less than 200 samples. 
+          was only 0.18. This number is too low to be considered valuble, especially given that there are less than 200 samples.
           This shows that government trust does not have any correlation with Happiness scores.")
         )
       )
@@ -255,12 +257,12 @@ conclusion_page <- tabPanel(
           p("Our research concluded that within our world, GDP per Capita controls happiness the most.
           A .66 r-squared value isnt ideal, but given such a subjective variable as happiness, it is quite a remarkable one.
           Seeing that GDP has a clear correlation with happiness is important, giving us insight into the workings of our world. Most of the unhappiest countries
-          are located in Africa and the Middle East. These are also the least developed countries. Pairing this knowledge with the fact that underdeveloped countries also tend to have low GDP's, 
+          are located in Africa and the Middle East. These are also the least developed countries. Pairing this knowledge with the fact that underdeveloped countries also tend to have low GDP's,
           may give governments of those countries further motivation to grow, since doing so will make their residents happier individuals.", br(), br(),
-          
-          "The second-most relevant category to happiness is life expectancy. This conclusion also makes sense because longer life spans 
+
+          "The second-most relevant category to happiness is life expectancy. This conclusion also makes sense because longer life spans
           mean safer environments and better technology, almost going hand-in hand with GDP.", br(), br(),
-          
+
           "Other than that, employment of individuals also had a large impact on happiness: we concluded that the percentage of people working in services has a correlation of 58
           percent with happiness scores, a meaningful value. Finally, and surprisingly, trust in government seemed to have
           no correlation with happiness. This result may be due to faulty data, and should be further investigated for more insight.", style = "font-size:20px")
