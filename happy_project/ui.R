@@ -78,10 +78,10 @@ research_question_page <- tabPanel(
         wellPanel(
           style = "background: white",
           p("Happiness scores and rankings are from the Gallup World Poll data from different countries.
-          Happiness scores are based on answer evaluation questions such as those asking an individual to rank their current lives on scale between 0 to 10. 
+          Happiness scores are based on answer evaluation questions such as those asking an individual to rank their current lives on scale between 0 to 10.
             The scores used in this study are nationally representative samples from 2017, using factors of economic production, social support, life expectancy, freedom, absence of corruption, and generosity.", br(),
             "We combined this Happiness Score data with UN data that shows more characteristics of different countries() such as GDP, economy, employment, population growth rate, etc.)
-            We used these data to integrate several factors to answer our research questions. 
+            We used these data to integrate several factors to answer our research questions.
             We used coefficient of determination, denoted R-squared, to analyze how dependent variables can correlate to the independent variable of Happiness score.", style = "font-size:18px")
         ),
 
@@ -123,8 +123,8 @@ page_one <- tabPanel(
         ),
         wellPanel(
           style = "background: white",
-          p("In GDP per Capita scatterplot, we found R-squared vale of 0.66 with the independent variable of GDP per Capita is associated with dependent variable of Happiness Score.
-                    This represents GDP per Capita has 66 percent of an acceptable correlation with Happiness score that shows GDP per Capita can determine Happiness of people. 
+          p("Under x value of dystopia residual of GDP per Capita, and y value of happiness score, we found R-squared vale of 0.66 with the independent variable of GDP per Capita is associated with dependent variable of Happiness Score.
+                    This represents GDP per Capita has 66 percent of an acceptable correlation with Happiness score that shows GDP per Capita can determine Happiness of people.
                     This further lead government of each countries to understand how GDP of country can affect to individual’s happiness that higher GDP can lead to have higher satisfaction of individuals.")
         )
       )
@@ -154,7 +154,7 @@ page_two <- tabPanel(
         ),
         wellPanel(
           style = "background: white",
-          p("In Health and Life expectancy scatterplot, we found R-squared value of 0.61 with the independent variable of Health and Life expectancy is associated with dependent variable of Happiness score.
+          p("Under x value of dystopia residual of health and life expectancy, and y value of happiness score, we found R-squared value of 0.61 with the independent variable of Health and Life expectancy is associated with dependent variable of Happiness score.
                     This represents Health and Life expectancy has 61 percent of an acceptable correlation with Happiness score which Health and Life expectancy affects Happiness of people. ")
         )
       )
@@ -226,7 +226,7 @@ page_four <- tabPanel(
         ),
         wellPanel(
           style = "background: white",
-          p("In Government trust scatterplot, we found R-squared value of 0.18 with the independent variable of Government trust which have low association with Happiness score. 
+          p("Under x value of dystopia residual of government trust and y value of happiness score, we found R-squared value of 0.18 with the independent variable of Government trust which have low association with Happiness score.
                       This represents government trust does not have any correlation with Happiness score.")
         )
       )
