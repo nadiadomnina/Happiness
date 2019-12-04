@@ -280,27 +280,35 @@ shinyServer(function(input, output) {
     output$economy_analysis = renderText({
         
         if(input$economy_choice == 1 ){
-            text =  ("For unemployment of labor force under x value of dystopia residual of unemployment, and y value of happiness score, we found R-squared value of 3% with the independent variable of employed in unemployed labor force has almost no associated with Happiness score. This represents how unemployment influences negatively with individual’s happiness.
-")
+            text =  ("This section explores the relationship between the percentage of people who are unemployed and happiness. 
+            We had predicted that this would be a highly important correlation, but were extremely surprised
+            to find that the R-squared value was only 0.03. This correaltion is so close to zero that it can be deemed as such, 
+            showing that there isnt a direct correaltion between unemployment percentages and happiness of individuals around the world.")
         }
         
         if(input$economy_choice == 2 ){
             text = 
-                         ("For employment in agriculture under x value of dystopia residual of employment in agriculture, and y value of happiness score, we found R-squared value of 56% with
-                         the independent variable of employed in agriculture associated with Happiness score.
-                         This represents employed in agriculture work field has an acceptable correlation with Happiness score.
-                         However, our R value of employed in agriculture seems negative that have negative association where people work in agriculture work fields have less happiness score. 
-")
+            ("This section explores the relationship between the percentage of people who are employed in agricultural work and happiness.
+            This R-squared value showed the highest correaltion of all our economy research, 0.56. Thinking about it, this correaltion
+            was to be expected, since a country that is full of agricultural workers is a country that probably lacks modern technology, 
+            leaving people to fend for themselves with their bare hands")
+        
+                       
         }
         
         
         if(input$economy_choice == 3 ){
-            text =("For employment in industry under x value of dystopia residual of employment in industry, and y value of happiness score, we found R-squared value of 19% with the independent variable of employed in industry which have low association with Happiness score. This represents employed in industry has no correlation with happiness of people. 
-")
+            text =("This section explores the relationship between the percentage of people who are employed in industry  and happiness.
+                   We predicted that there would definetely be a correlation, relying on our knowledge that more developed countries have more industry
+                   jobs, and thus must be happier. but we were wrong. The correaltion was only 0.19, showing that big industry isnt everything, especially
+                   in terms of happiness.
+                  ")
         }
         
         if(input$economy_choice == 4 ){
-            text = ("For employment in services under x value of dystopia residual of employment in services, and y value of happiness score, we found R-squared value of 58% with the independent variable of employed in service associated with happiness score. This represents employed in service has an acceptable correlation with Happiness score. 
+            text = ("For the percentage of the population employed in services, 
+            we found the R-squared value of .58. This meant that countries who have more people employed in services
+           have higher life satisfaction rates, making us question if this is the way the job market should be heading? 
 ")
         }
         text
