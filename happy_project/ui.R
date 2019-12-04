@@ -19,20 +19,9 @@ main_page <- tabPanel(
 
 
   titlePanel("What Makes Us Happy?"),
+  h3("Investigating possible causes of happiness and lack of happiness around the world.", br(), br(), ""),
 
 
-  wellPanel(
-    p(
-      "our to-do list:", br(),
-      "1. make the analysis more reader - friendly.", br(),
-      strong("2. Add labels to plots AND describe the avriables in the analysis. What does .75 life expectancy mean? those things")
-    )
-  ),
-
-  wellPanel(
-    style = "background: white",
-    p("Investigating possible causes of happiness and lack of happiness around the world.")
-  ),
 
   # sidebarLayout(
   fluidPage(
@@ -69,31 +58,45 @@ main_page <- tabPanel(
 research_question_page <- tabPanel(
   "Information", # label for the tab in the navbar
 
-  # This content uses a column layouut
   fluidRow(
     column(
       10,
       mainPanel(
-        h2("Background Information:"),
+        h2("Happiness Scores"),
+        h4("What are they?"),
         wellPanel(
           style = "background: white",
-          p("Happiness scores and rankings are from the Gallup World Poll data from different countries.
-          Happiness scores are based on answer evaluation questions such as those asking an individual to rank their current lives on scale between 0 to 10.
-            The scores used in this study are nationally representative samples from 2017, using factors of economic production, social support, life expectancy, freedom, absence of corruption, and generosity.", br(),
-            "We combined this Happiness Score data with UN data that shows more characteristics of different countries() such as GDP, economy, employment, population growth rate, etc.)
-            We used these data to integrate several factors to answer our research questions.
-            We used coefficient of determination, denoted R-squared, to analyze how dependent variables can correlate to the independent variable of Happiness score.", style = "font-size:18px")
+          p("Happiness scores and ranking data used in this study originate from the Gallup World Poll data.
+          Happiness scores are determined by peoples answers to evaluation questions such as those asking an individual to rank their current lives on a scale between 0 to 10.
+          The scores used in this Happiness study are nationally representative samples of all countries of the world in 2017.", br(),
+           style = "font-size:18px")
         ),
-
+   
         h2("Research Question:"),
+        h4("What are we trying to learn?"),
         wellPanel(
           style = "background: white",
           p("1. What effect do different country characteristics have on people's happiness?", br(),
-            "2. Is country happiness calculated based on the same characteristics as other countries,
-            or does each country have a different set of characteristics leading to its happiness?",
+            "2. On average, what characteristic has the highest correlation with happiness?",
             style = "font-size:20px"
           )
+        ),
+        h2("Our Approach:"),
+        h4("How will we solve our problem?"),
+        wellPanel(
+          style = "background: white",
+          
+          p( "In our research, we combined the Gallup Happiness data with UN data that shows more characteristics of different countries (such as GDP, economy, employment, population growth rate, etc.).
+          We then decided on the most likely categories that can effect happiness, settling on 4 different categories:", br(),
+             "1. GDP", br(),
+             "2. Health (Life Expectancy)", br(),
+             "3. Economy (Employment Characteristics)", br(), 
+             "4. Trust in Government", br(),
+             "We then created scatter plots of data that related to those categories and analyzed the relationship between them and the observed happiness scores.
+             We calculated their coefficients of determination (R-squared values) and compared them to each other.",
+             style = "font-size:18px")
         )
+        
       )
     )
   )
@@ -107,7 +110,7 @@ research_question_page <- tabPanel(
 page_one <- tabPanel(
   "GDP", # label for the tab in the navbar
 
-  titlePanel("      GDP"), # show with a displayed title
+  titlePanel("GDP"), # show with a displayed title
 
   fluidRow(
     column(
@@ -123,9 +126,9 @@ page_one <- tabPanel(
         ),
         wellPanel(
           style = "background: white",
-          p("Under x value of dystopia residual of GDP per Capita, and y value of happiness score, we found R-squared vale of 0.66 with the independent variable of GDP per Capita is associated with dependent variable of Happiness Score.
-                    This represents GDP per Capita has 66 percent of an acceptable correlation with Happiness score that shows GDP per Capita can determine Happiness of people.
-                    This further lead government of each countries to understand how GDP of country can affect to individual’s happiness that higher GDP can lead to have higher satisfaction of individuals.")
+          p("In this section we explored the relationshiop between a country's Gross Domestic product(GDP) and their happiness Score.
+          There is a clear positive correlation between the two variables.
+          A .66 r-squared value isnt ideal, but given such a subjective variable as happiness, it is quite a remarkable one.")
         )
       )
     )
@@ -154,12 +157,13 @@ page_two <- tabPanel(
         ),
         wellPanel(
           style = "background: white",
-          p("Under x value of dystopia residual of health and life expectancy, and y value of happiness score, we found R-squared value of 0.61 with the independent variable of Health and Life expectancy is associated with dependent variable of Happiness score.
-                    This represents Health and Life expectancy has 61 percent of an acceptable correlation with Happiness score which Health and Life expectancy affects Happiness of people. ")
-        )
+          p("In this section we explored the relationship between a country's average Life Expectancy (unit unknown) and their Happiness score. 
+          The results of this were as expected, the higher the life expecancy, the greater the happiness. The coefficient of determination is 0.61, also showing a positive correaltion.
+          This only makes sense, since people who arent in constant fear for their and their family's life can focus on life goals and dreams, making their life more satisfactory.")
       )
     )
   )
+)
 )
 
 page_three <- tabPanel(
@@ -226,8 +230,9 @@ page_four <- tabPanel(
         ),
         wellPanel(
           style = "background: white",
-          p("Under x value of dystopia residual of government trust and y value of happiness score, we found R-squared value of 0.18 with the independent variable of Government trust which have low association with Happiness score.
-                      This represents government trust does not have any correlation with Happiness score.")
+          p("Although we expected a high correlation between government corruption rates and happiness, our results proved otherwise. The found coefficient of determination
+          was only 0.18. This number is too low to be considered valuble, especially given that there are less than 200 samples. 
+          This shows that government trust does not have any correlation with Happiness scores.")
         )
       )
     )
@@ -247,8 +252,18 @@ conclusion_page <- tabPanel(
       10,
       mainPanel(
         wellPanel(
-          p("In conclusion, GDP per Capita, and Health and Life expectancy have the most relevant to happiness of people which both have about 60 percent of R-square value.
-            Other than that, employment of individuals also impact on happiness that people in service have the highest correlation of 58 percent between employment of industry, agriculture, service, and unemployment.", style = "font-size:25px")
+          p("Our research concluded that within our world, GDP per Capita controls happiness the most.
+          A .66 r-squared value isnt ideal, but given such a subjective variable as happiness, it is quite a remarkable one.
+          Seeing that GDP has a clear correlation with happiness is important, giving us insight into the workings of our world. Most of the unhappiest countries
+          are located in Africa and the Middle East. These are also the least developed countries. Pairing this knowledge with the fact that underdeveloped countries also tend to have low GDP's, 
+          may give governments of those countries further motivation to grow, since doing so will make their residents happier individuals.", br(), br(),
+          
+          "The second-most relevant category to happiness is life expectancy. This conclusion also makes sense because longer life spans 
+          mean safer environments and better technology, almost going hand-in hand with GDP.", br(), br(),
+          
+          "Other than that, employment of individuals also had a large impact on happiness: we concluded that the percentage of people working in services has a correlation of 58
+          percent with happiness scores, a meaningful value. Finally, and surprisingly, trust in government seemed to have
+          no correlation with happiness. This result may be due to faulty data, and should be further investigated for more insight.", style = "font-size:20px")
         )
       )
     )
@@ -311,7 +326,7 @@ about_us_page <- tabPanel(
 
 
 shinyUI(navbarPage(
-  "Happiness Report", # application title
+  "Ingredients of Happiness", # application title
   main_page,
   research_question_page,
   page_one,
