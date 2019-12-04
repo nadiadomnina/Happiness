@@ -278,14 +278,29 @@ about_us_page <- tabPanel(
   "About Us", # label for the tab in the navbar
   titlePanel("The Team"), # show with a displayed title
 
-  # This content uses a column layouut
-  fluidRow(
-    column(
-      10,
+  sidebarLayout(
+
+    position = c("right"),
+    sidebarPanel(
+
+      style = "background: white",
+      h2("Affiliation"),
+      p(
+        "INFO-201A: Technical Foundations of Informatics,",
+        br(),
+        "The Information School,",
+        br(),
+        "University of Washington,",
+        br(),
+        "Autumn 2019,", style = "font-size:15px"
+      
+      )
+    ),
       mainPanel(
 
         # Nadia
         wellPanel(
+          style = "background: lightskyblue",
           h2("Nadia Domnina"),
           strong("Graduation Year:"),
           p("2022"),
@@ -295,6 +310,7 @@ about_us_page <- tabPanel(
 
         # Vinay
         wellPanel(
+          style = "background: #AB82FF",
           h2("Vinay Patel"),
           strong("Graduation Year:"),
           p("2020"),
@@ -304,6 +320,7 @@ about_us_page <- tabPanel(
 
         # Hanna
         wellPanel(
+          style = "background: orange",
           h2("Hanna Song"),
           strong("Graduation Year:"),
           p("2020"),
@@ -313,6 +330,7 @@ about_us_page <- tabPanel(
 
         # Vincent
         wellPanel(
+          style = "background: pink",
           h2("Vincent Vo"),
           strong("Graduation Year:"),
           p("2022"),
@@ -320,9 +338,9 @@ about_us_page <- tabPanel(
           p("Informatics")
         )
       )
+      )
     )
-  )
-)
+
 
 
 
